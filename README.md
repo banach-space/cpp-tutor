@@ -1,5 +1,6 @@
 cpp-tutor
 =========
+[![Build Status](https://travis-ci.org/banach-space/cpp-tutor.svg?branch=master)](https://travis-ci.org/banach-space/cpp-tutor)
 Code examples that I use for tutoring C++.
 
 The intent of this tutorial is to give a quick overview of some of the most
@@ -13,7 +14,8 @@ Disclaimer
 The examples presented here are meant to highlight (and sometimes exploit) the
 specifics and quirks of the language. To this end, the presented examples may
 exhibit undefined or implementation specific behaviour, or implement solutions
-that are against good coding practices. 
+that are against good coding practices. This is done for educational purposes
+only!
 
 Status
 --------

@@ -24,7 +24,7 @@
 #include <string_view>
 #endif
 
-#include <strings.hpp>
+#include "../include/strings.hpp"
 
 int main() {
   // 1. DEFINE THE STRINGS

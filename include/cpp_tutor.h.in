@@ -1,0 +1,13 @@
+//========================================================================
+// FILE:
+//  cpp_tutor.h.in
+//
+// AUTHOR:
+//    banach-space@github
+//
+// DESCRIPTION:
+//    Contains defines exported from CMake
+//
+// License: MIT
+//========================================================================
+#cmakedefine MEMORY_LEAK

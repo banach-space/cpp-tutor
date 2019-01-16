@@ -10,7 +10,7 @@
 //
 // License: MIT
 //========================================================================
-#include <strings.hpp>
+#include "../include/strings.hpp"
 
 void reverse(char *input_str) {
   if ('\0' == *input_str) {

@@ -6,9 +6,9 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Shows the difference between deep and shollow copy. Try to guess what's
-//    going to be printed, then study was indedd gets printed and make sure
-//    that you understand why.
+//    Shows the difference between deep and shallow copy. Try to guess what's
+//    going to be printed. Then study compare that against the actual output
+//    and make sure that you understand any discrepancies.
 //
 // License: MIT
 //========================================================================
@@ -48,8 +48,8 @@ int main() {
   std::cout << std::endl;
 
   // FREE MEMORY
-  // delete obj_b;
-  // delete obj_d;
+  delete obj_b;
+  delete obj_d;
 
   return 0;
 }

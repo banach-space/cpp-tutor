@@ -1,3 +1,15 @@
+//========================================================================
+// FILE:
+//    deep_vs_shallow.cpp
+//
+// AUTHOR:
+//    banach-space@github
+//
+// DESCRIPTION:
+//    Implementation of Deep and Shallow
+//
+// License: MIT
+//========================================================================
 #include <iostream>
 #include <deep_vs_shallow.hpp>
 
@@ -7,7 +19,12 @@ Shallow::Shallow(const Shallow &rhs) {
   m_data = rhs.m_data;
 }
 
-Shallow::~Shallow() { delete[] m_data; }
+Shallow::~Shallow() {
+  if (m_data != nullptr) {
+    delete[] m_data;
+    m_data = nullptr;
+  }
+}
 
 void
 Shallow::add(int elem) {
@@ -23,14 +40,14 @@ Shallow::add(int elem) {
 int&
 Shallow::getElemAt(unsigned idx) { return m_data[idx]; }
 
-Deep::Deep() { 
+Deep::Deep() {
   m_data = new int[m_capacity]();
 }
 
 Deep::Deep(const Deep &rhs) {
   m_data = new int[m_capacity];
   for (size_t ii = 0; ii < m_capacity; ii++) {
-    m_data[ii] = rhs.m_data[ii]; 
+    m_data[ii] = rhs.m_data[ii];
   }
 }
 

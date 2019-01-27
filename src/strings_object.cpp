@@ -23,10 +23,9 @@
 #include "cpp_tutor.h"
 
 Strings::Strings(char const *const *c_strings, size_t num_strings)
-: 
+:
   d_memory(static_cast<std::string *>(operator new(sizeof(std::string)))),
-  d_capacity(1)
-{
+  d_capacity(1) {
   reserve();
   for (size_t ii = 0; ii < num_strings; ii++) {
     std::string str(c_strings[ii]);

@@ -26,6 +26,9 @@ add_executable(strings_3
 add_executable(pointers
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers.cpp)
 
+add_executable(smart_pointers
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_pointers_main.cpp)
+
 add_executable(strings_object
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object_main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp)
@@ -48,6 +51,9 @@ target_include_directories(cppTutorUT PRIVATE SYSTEM
 target_include_directories(pointers PRIVATE SYSTEM
   ${PROJECT_BINARY_DIR}/include/
 )
+target_include_directories(pointers PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
 
 target_include_directories(strings_object PRIVATE SYSTEM
   ${PROJECT_BINARY_DIR}/include/
@@ -59,7 +65,12 @@ target_include_directories(deep_vs_shallow PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include/
 )
 
+target_include_directories(smart_pointers PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
 option (MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
+option (COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
 
 configure_file (
   ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in
@@ -84,6 +95,10 @@ target_compile_options(strings_3 PRIVATE
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 
 target_compile_options(pointers PRIVATE
+  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+
+target_compile_options(smart_pointers PRIVATE
   "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 

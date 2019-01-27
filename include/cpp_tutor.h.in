@@ -11,3 +11,4 @@
 // License: MIT
 //========================================================================
 #cmakedefine MEMORY_LEAK
+#cmakedefine COMPILATION_ERROR

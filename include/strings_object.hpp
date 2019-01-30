@@ -18,6 +18,8 @@
 //
 // License: MIT
 //========================================================================
+#ifndef _STRINGS_OBJECT_
+#define _STRINGS_OBJECT_
 #include <string>
 
 //========================================================================
@@ -62,3 +64,5 @@ class Strings {
     // The raw memory pool used for storing strings
     std::string *d_memory = nullptr;
 };
+
+#endif

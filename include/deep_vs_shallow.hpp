@@ -14,6 +14,9 @@
 //
 // License: MIT
 //========================================================================
+#ifndef _DEEP_VS_SHALLOW_
+#define _DEEP_VS_SHALLOW_
+
 #include <string>
 
 class Shallow {
@@ -43,3 +46,5 @@ class Deep {
   constexpr static size_t m_capacity = 10;
   size_t m_num_elements = 0;
 };
+
+#endif

@@ -41,6 +41,12 @@ add_executable(memory_block
   ${CMAKE_CURRENT_SOURCE_DIR}/src/memory_block.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/memory_block_main.cpp)
 
+add_executable(rvalue_vs_lvalue
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvalue_vs_lvalue.cpp)
+
+add_executable(type_casting
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/type_casting_main.cpp)
+
 target_include_directories(strings_1 PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -75,6 +81,10 @@ target_include_directories(smart_pointers PRIVATE SYSTEM
 
 target_include_directories(memory_block PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_include_directories(rvalue_vs_lvalue PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
 )
 
 option (MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)

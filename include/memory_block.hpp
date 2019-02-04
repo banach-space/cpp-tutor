@@ -25,22 +25,19 @@ class MemoryBlock {
  public:
   // Simple constructor that initializes the resource.
   explicit MemoryBlock(size_t length);
-
-  // Destructor.
-  ~MemoryBlock() ;
-
   // Copy constructor.
   MemoryBlock(const MemoryBlock &other);
-
   // Copy assignment operator.
   MemoryBlock &operator=(const MemoryBlock &other);
-
-  // Retrieves the length of the data resource.
-  size_t Length() const;
   // Move constructor.
   MemoryBlock(MemoryBlock &&other) noexcept;
   // Move assignment operator.
   MemoryBlock &operator=(MemoryBlock &&other) noexcept;
+  // Destructor.
+  ~MemoryBlock() ;
+
+  // Retrieves the length of the data resource.
+  size_t Length() const;
 
  private:
   // The resource.

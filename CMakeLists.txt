@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.4.3 FATAL_ERROR)
 
 project(cpp-tutor)
 
+set(CMAKE_CXX_STANDARD 11)
+
 set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics -std=c++17)
 set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always -std=c++17)
 

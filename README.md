@@ -1,6 +1,7 @@
 cpp-tutor
 =========
 [![Build Status](https://travis-ci.org/banach-space/cpp-tutor.svg?branch=master)](https://travis-ci.org/banach-space/cpp-tutor)
+[![Build status](https://ci.appveyor.com/api/projects/status/axf91gjs67eoms4s/branch/add_appveyor?svg=true)](https://ci.appveyor.com/project/banach-space/cpp-tutor/branch/add_appveyor)
 
 Code examples that I use for tutoring C++.
 
@@ -61,7 +62,7 @@ The items covered in this tutorial so far:
   * `std::move` vs `std::forward`
   * source files:
     * `rvalue_vs_lvalue_main.cpp`
- * Move semantics
+* Move semantics
   * move constructor and move assign operator
   * source files
     * `memory_block.cpp`, `memory_block_main.cpp`

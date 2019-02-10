@@ -1,0 +1,49 @@
+version: '1.0.{build}'
+
+platform:
+  - x64
+
+clone_folder: c:\projects\cpp-tutor
+image:
+# - Visual Studio 2013
+- Visual Studio 2015
+# - Visual Studio 2017 # GTest doesn't build with VS '17
+ 
+configuration:
+  - Release
+  # - Debug
+
+environment:
+  matrix:
+  - arch: Win64
+  # - arch: #does not work, Release|x64 not a valid target
+matrix:
+  fast_finish: true
+
+init:
+- set arch=
+- if "%arch%"=="Win64" ( set arch= Win64)
+- echo %arch%
+- echo %APPVEYOR_BUILD_WORKER_IMAGE%
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" ( set generator="Visual Studio 15 2017%arch%" )
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" ( set generator="Visual Studio 14 2015%arch%" )
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2013" ( set generator="Visual Studio 12 2013%arch%" )
+- echo %generator%
+
+before_build:
+- cmd: |-
+    git clone https://github.com/google/googletest.git
+    mkdir _build
+    cd _build
+    cmake --version
+    cmake ../ -G %generator%
+    dir
+
+build:
+  # project: $(APPVEYOR_BUILD_FOLDER)\_build\$(APPVEYOR_PROJECT_NAME).sln TODO: Update project name
+  project: $(APPVEYOR_BUILD_FOLDER)\_build\cpp-tutor.sln
+  verbosity: minimal
+  parallel: true
+
+test_script:
+  - '%APPVEYOR_BUILD_FOLDER%\_build\%CONFIGURATION%\cppTutorUT.exe'

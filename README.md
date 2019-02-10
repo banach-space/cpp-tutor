@@ -50,3 +50,18 @@ The items covered in this tutorial so far:
     * `pointers.cpp`, strings_object.cpp`, `strings_object.hpp`,
       `strings_object_main.cpp`, `tests_strings_object.cpp`,
       `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
+* Smart pointers
+  * `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`
+  * `std::make_unqiue` and `std::make_shared`
+  * source files:
+    * `smart_pointers_main.cpp`
+* l-value/r-value
+  * l-value vs r-value
+  * l-value reference vs l-value to const reference vs r-value reference
+  * `std::move` vs `std::forward`
+  * source files:
+    * `rvalue_vs_lvalue_main.cpp`
+ * Move semantics
+  * move constructor and move assign operator
+  * source files
+    * `memory_block.cpp`, `memory_block_main.cpp`

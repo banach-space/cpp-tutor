@@ -1,6 +1,6 @@
 //========================================================================
 // FILE:
-//  rvalue_vs_lvalue.cpp
+//  rvalue_vs_lvalue_main.cpp
 //
 // AUTHOR:
 //    banach-space@github
@@ -53,8 +53,7 @@ void forwarding( T && arg ) {
 //========================================================================
 // main
 //========================================================================
-int main()
-{
+int main() {
   // 1. L-VALUE REFERENCES
   SomeClass b;
   SomeClass &c = b;

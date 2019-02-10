@@ -44,7 +44,7 @@ add_executable(memory_block
   ${CMAKE_CURRENT_SOURCE_DIR}/src/memory_block_main.cpp)
 
 add_executable(rvalue_vs_lvalue
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvalue_vs_lvalue.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvalue_vs_lvalue_main.cpp)
 
 add_executable(type_casting
   ${CMAKE_CURRENT_SOURCE_DIR}/src/type_casting_main.cpp)

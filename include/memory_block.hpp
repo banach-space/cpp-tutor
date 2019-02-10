@@ -37,7 +37,7 @@ class MemoryBlock {
   ~MemoryBlock() ;
 
   // Retrieves the length of the data resource.
-  size_t Length() const;
+  size_t length() const;
 
  private:
   // The resource.

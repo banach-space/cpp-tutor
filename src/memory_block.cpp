@@ -55,7 +55,7 @@ MemoryBlock::operator=(const MemoryBlock &other) {
 }
 
 size_t
-MemoryBlock::Length() const {
+MemoryBlock::length() const {
   return m_length;
 }
 

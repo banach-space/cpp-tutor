@@ -10,8 +10,10 @@
 //
 // License: MIT
 //========================================================================
-#include <utility>
 #include <cassert>
+#include <iostream>
+#include <utility>
+
 #include <cpp_tutor.h>
 
 //========================================================================
@@ -33,16 +35,19 @@ void baz(const SomeClass &arg) {
   return;
 }
 
-template<typename T>
-void g(T&& x)
-{
-}
- 
-template<typename T>
-void f(T&& x)
-{
-    g(x);
-    g(std::forward<T>(x));
+void overloaded( const int &arg ) { std::cout << "    Pass by lvalue\n"; }
+void overloaded( int && arg ) { std::cout << "    Pass by rvalue\n"; }
+
+template< typename T >
+void forwarding( T && arg ) {
+    std::cout << "  Call via std::forward: " << std::endl;
+    overloaded( std::forward< T >( arg ) );
+
+    std::cout << "  Call via std::move: " << std::endl;;
+    overloaded( std::move( arg ) );
+
+    std::cout << "  Call by simple passing: " << std::endl;
+    overloaded( arg );
 }
 
 //========================================================================
@@ -50,7 +55,7 @@ void f(T&& x)
 //========================================================================
 int main()
 {
-  // 1. l-value references
+  // 1. L-VALUE REFERENCES
   SomeClass b;
   SomeClass &c = b;
   assert (&b == &c);
@@ -64,7 +69,7 @@ int main()
   const int &ref3 = x; // C
   const int &ref4 = 5; // D
 
-  // 2. r-value references
+  // 2. R-VALUE REFERENCES
 #ifdef COMPILATION_ERROR
   int &&ref5 = x; // E
 #endif
@@ -75,7 +80,7 @@ int main()
 #endif
   const int &&ref8 = 5; // H
 
-  // 3. Function calls
+  // 3. FUNCTION CALLS
   SomeClass a;
 
   foo(a);
@@ -92,4 +97,11 @@ int main()
   baz(a);
   baz(SomeClass());
 
+  // 4. STD::MOVE VS STD::FORWARD
+  std::cout << "Initial caller passes rvalue:\n";
+  forwarding(5);
+
+  std::cout << "Initial caller passes lvalue:\n";
+  int arg = 5;
+  forwarding(arg);
 }

@@ -40,8 +40,8 @@ class MemoryBlock {
   size_t length() const;
 
  private:
-  // The resource.
-  size_t m_length;
   // The length of the resource.
+  size_t m_length;
+  // The resource.
   int *m_data;
 };

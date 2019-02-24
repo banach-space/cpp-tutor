@@ -49,6 +49,12 @@ add_executable(rvalue_vs_lvalue
 add_executable(type_casting
   ${CMAKE_CURRENT_SOURCE_DIR}/src/type_casting_main.cpp)
 
+add_executable(const_vs_constexpr
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/const_vs_constexpr.cpp)
+
+add_executable(rvo
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvo.cpp)
+
 target_include_directories(strings_1 PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -86,6 +92,14 @@ target_include_directories(memory_block PRIVATE SYSTEM
 )
 
 target_include_directories(rvalue_vs_lvalue PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
+target_include_directories(const_vs_constexpr PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
+target_include_directories(rvo PRIVATE SYSTEM
   ${PROJECT_BINARY_DIR}/include/
 )
 

@@ -107,7 +107,7 @@ int main() {
 
   // 4. FIBONACCI
   // Compile time calculations
-  constexpr unsigned c = 100;
+  constexpr unsigned c = 10;
   constexpr unsigned fib_1 = fibonacci_tmp<c>::value;
   constexpr unsigned fib_2 = fibonacci_cxp(c);
 
@@ -116,7 +116,7 @@ int main() {
   std::cout << "  fibonacci_cxp(c): " << fib_2 << std::endl;
 
   // Runtime calculations
-  unsigned d = 100;
+  unsigned d = 10;
   unsigned fib_3 = fibonacci_cxp(d);
 
   std::cout << "FIBONACCI: run-time" << std::endl;

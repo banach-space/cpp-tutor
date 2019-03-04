@@ -22,6 +22,8 @@ matrix:
       # variable to force the clang++ version. As a result, simply use system
       # clang and clang++ binaries that are known to correspond to clang-7.
     - MATRIX_EVAL="CC=clang && CXX=clang++"
+  - os: osx
+    osx_image: xcode10.1
 
 before_install:
 - eval "${MATRIX_EVAL}"

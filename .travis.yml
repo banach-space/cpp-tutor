@@ -1,25 +1,27 @@
-dist: trusty
+dist: xenial
 language: cpp
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-6.0
     packages:
       - g++-7
-      - clang++-6.0
 
 matrix:
   include:
   - os: linux
     env:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-    - LINKER_FLAGS=""
   - os: linux
     env:
-    - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-    - LINKER_FLAGS=""
+      # The version of clang available in Ubuntu Xenial is clang-7. There's a
+      # clang-7 symlink (that points to clang), so the version of the C
+      # compiler can be set with the CC env variable. However, there's no
+      # clang++-7 symlink, which means that it's impossible to use the CXX env
+      # variable to force the clang++ version. As a result, simply use system
+      # clang and clang++ binaries that are known to correspond to clang-7.
+    - MATRIX_EVAL="CC=clang && CXX=clang++"
 
 before_install:
 - eval "${MATRIX_EVAL}"
@@ -30,7 +32,7 @@ script:
   # BUILD CPP-TUTOR
   - mkdir build
   - cd build
-  - cmake  -DCMAKE_BUILD_TYPE=Debug ../
+  - cmake  -DCMAKE_BUILD_TYPE=Release ../
   - make -j8
   # RUN UNIT TESTS
   - ./cppTutorUT

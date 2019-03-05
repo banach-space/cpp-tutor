@@ -55,7 +55,7 @@ template <> struct fibonacci_tmp<0> { static const unsigned value = 0; };
 template <> struct fibonacci_tmp<1> { static const unsigned value = 1; };
 
 constexpr unsigned fibonacci_cxp(const unsigned x) {
-  return x <= 1 ? 1 : fibonacci_cxp(x - 1) + fibonacci_cxp(x - 2);
+  return x <= 1 ? x : fibonacci_cxp(x - 1) + fibonacci_cxp(x - 2);
 }
 
 //========================================================================

@@ -50,7 +50,7 @@ class List {
 
  public:
   explicit List() {
-    std::cout << "    Explicit constructor" << std::endl; 
+    std::cout << "    Explicit constructor" << std::endl;
   };
   List(const List &) {
     std::cout << "    Copy constructor" << std::endl;
@@ -66,10 +66,12 @@ class List {
   List(List &&) = delete;
 #else
   List(List &&) {
-    std::cout << "    Move constructor" << std::endl;  
+    std::cout << "    Move constructor" << std::endl;
   };
 #endif
-  ~List() = default;
+  ~List() {
+    std::cout << "    Destructor" << std::endl;
+  }
   List operator=(List) = delete;
   List operator=(List &&) = delete;
 
@@ -88,7 +90,7 @@ List foo_nrvo() {
   local_list.createHead(a);
 
   return local_list;
-} 
+}
 
 List foo_rvo() {
   // Under C++17 you are guaranteed that this return value is never copy- or

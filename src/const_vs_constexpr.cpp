@@ -8,8 +8,8 @@
 // DESCRIPTION:
 //    Discusses the constexpr keyword. Note that constexpr was introduced in
 //    C++11, but only in C++14 the specification was relaxed enough to make
-//    it practical to write constexpr functions. A very good overview can be found
-//    Ansel Sermersheim here (CopperSpice videos by Barbara Geller and
+//    it practical to write constexpr functions. A very good overview can be
+//    found Ansel Sermersheim here (CopperSpice videos by Barbara Geller and
 //      https://www.youtube.com/watch?v=Dpob2KsYLWs
 //
 // License: MIT
@@ -121,5 +121,4 @@ int main() {
 
   std::cout << "FIBONACCI: run-time" << std::endl;
   std::cout << "  fibonacci_cxp(d): " << fib_3 << std::endl;
-  
 }

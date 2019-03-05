@@ -55,6 +55,9 @@ add_executable(const_vs_constexpr
 add_executable(rvo
   ${CMAKE_CURRENT_SOURCE_DIR}/src/rvo.cpp)
 
+add_executable(auto_vs_decltype
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/auto_vs_decltype.cpp)
+
 target_include_directories(strings_1 PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -103,6 +106,10 @@ target_include_directories(rvo PRIVATE SYSTEM
   ${PROJECT_BINARY_DIR}/include/
 )
 
+target_include_directories(auto_vs_decltype PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
 option (MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
 option (COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
 
@@ -137,6 +144,10 @@ target_compile_options(smart_pointers PRIVATE
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 
 target_compile_options(strings_object PRIVATE
+  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+
+target_compile_options(auto_vs_decltype PRIVATE
   "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 

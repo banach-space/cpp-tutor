@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.4.3 FATAL_ERROR)
 
 project(cpp-tutor)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
-set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics -std=c++17)
-set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always -std=c++17)
+set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics)
+set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always)
 
 add_executable(cppTutorUT
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp

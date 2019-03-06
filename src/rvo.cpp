@@ -46,7 +46,7 @@ class List {
     Node *next_;
   };
 
-  Node *head_ = nullptr;;
+  Node *head_ = nullptr;
 
  public:
   explicit List() {

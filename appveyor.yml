@@ -5,18 +5,14 @@ platform:
 
 clone_folder: c:\projects\cpp-tutor
 image:
-# - Visual Studio 2013
 - Visual Studio 2015
-# - Visual Studio 2017 # GTest doesn't build with VS '17
  
 configuration:
   - Release
-  # - Debug
 
 environment:
   matrix:
   - arch: Win64
-  # - arch: #does not work, Release|x64 not a valid target
 matrix:
   fast_finish: true
 
@@ -40,7 +36,6 @@ before_build:
     dir
 
 build:
-  # project: $(APPVEYOR_BUILD_FOLDER)\_build\$(APPVEYOR_PROJECT_NAME).sln TODO: Update project name
   project: $(APPVEYOR_BUILD_FOLDER)\_build\cpp-tutor.sln
   verbosity: minimal
   parallel: true

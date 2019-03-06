@@ -17,7 +17,7 @@
 #include <cpp_tutor.h>
 
 //========================================================================
-// Data structures and example functions
+// Helper functions and data structures
 //========================================================================
 class SomeClass {
   int a = 0xdeadbeef;

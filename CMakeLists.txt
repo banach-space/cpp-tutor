@@ -58,6 +58,12 @@ add_executable(rvo
 add_executable(auto_vs_decltype
   ${CMAKE_CURRENT_SOURCE_DIR}/src/auto_vs_decltype.cpp)
 
+add_executable(noexcept
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/noexcept_main.cpp)
+
+add_executable(override_final
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/override_final_main.cpp)
+
 target_include_directories(strings_1 PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -110,6 +116,14 @@ target_include_directories(auto_vs_decltype PRIVATE SYSTEM
   ${PROJECT_BINARY_DIR}/include/
 )
 
+target_include_directories(override_final PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
+target_include_directories(noexcept PRIVATE SYSTEM
+  ${PROJECT_BINARY_DIR}/include/
+)
+
 option (MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
 option (COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
 
@@ -148,6 +162,14 @@ target_compile_options(strings_object PRIVATE
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 
 target_compile_options(auto_vs_decltype PRIVATE
+  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+
+target_compile_options(override_final PRIVATE
+  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+
+target_compile_options(noexcept PRIVATE
   "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
   "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 

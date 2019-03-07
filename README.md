@@ -94,12 +94,12 @@ The items covered in this tutorial so far (with some relevant links):
    * (N)RVO
    * guaranteed copy elision (C++17)
    * source files:
-     * `rvo.cpp`
+     * `rvo_main.cpp`
 7. New kewords in modern C++:
-   * `const` vs `constexpr`
-   * `nullptr`
+   * `const` vs `constexpr`, `nullptr`, `auto`, `decltype`
    * source files:
-     * `const_vs_constexpr.cpp`, `null_vs_nullptr_main.cpp`
+     * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
+       `auto_vs_decltype_main.cpp`
 
 License
 --------

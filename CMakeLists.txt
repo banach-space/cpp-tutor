@@ -70,13 +70,13 @@ set(type_casting_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/type_casting_main.cpp)
 
 set(const_vs_constexpr_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/const_vs_constexpr.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/const_vs_constexpr_main.cpp)
 
 set(rvo_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvo.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rvo_main.cpp)
 
 set(auto_vs_decltype_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/auto_vs_decltype.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/auto_vs_decltype_main.cpp)
 
 set(noexcept_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/noexcept_main.cpp)

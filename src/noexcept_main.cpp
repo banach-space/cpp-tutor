@@ -6,7 +6,7 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//  Illustrates the noexcept keyword. Also demonstrates that std::vector has
+//  Illustrates the noexcept keyword and demonstrates that std::vector has
 //  different behavior if the type's move constructor is marked noexcept. This
 //  reason behind this is very well explained here:
 //   * https://www.reddit.com/r/cpp_questions/comments/51btqw/why_does_stdvector_have_different_behavior_if_the/

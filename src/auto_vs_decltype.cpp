@@ -6,8 +6,15 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Examples extracted from
-//    http://thbecker.net/articles/auto_and_decltype/
+//    Examples to demonstrate auto and decltype. Note that type deduction for
+//    auto works very similar to type deduction for functions template. The
+//    only notable difference is std::initializer_list<>. As per § 14.8.2.5/5
+//    of the C++11 standard, std::initliazer_list<> is a non-deduced context
+//    for a template argument. However with auto, § 7.1.6.4/6 has explicit
+//    support for std::initializer_list<>
+//
+//    References:
+//    * http://thbecker.net/articles/auto_and_decltype/section_01.html
 //
 // License: MIT
 //========================================================================

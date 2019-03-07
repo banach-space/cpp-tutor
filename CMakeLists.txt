@@ -24,6 +24,7 @@ set(cppTutor_EXECUTABLES
     auto_vs_decltype
     noexcept
     override_final
+    null_vs_nullptr
   )
 
 set(cppTutorUT_SOURCES
@@ -82,6 +83,9 @@ set(noexcept_SOURCES
 
 set(override_final_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/override_final_main.cpp)
+
+set(null_vs_nullptr_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/null_vs_nullptr_main.cpp)
 
 # Define executables and set the include directories
 foreach( executable ${cppTutor_EXECUTABLES} )

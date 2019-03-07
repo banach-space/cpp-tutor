@@ -97,8 +97,9 @@ The items covered in this tutorial so far (with some relevant links):
      * `rvo.cpp`
 7. New kewords in modern C++:
    * `const` vs `constexpr`
+   * `nullptr`
    * source files:
-     * `const_vs_constexpr.cpp`
+     * `const_vs_constexpr.cpp`, `null_vs_nullptr_main.cpp`
 
 License
 --------

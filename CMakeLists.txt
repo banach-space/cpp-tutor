@@ -7,7 +7,26 @@ set(CMAKE_CXX_STANDARD 17)
 set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics)
 set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always)
 
-add_executable(cppTutorUT
+set(cppTutor_EXECUTABLES
+    cppTutorUT
+    strings_1
+    strings_2
+    strings_3
+    pointers
+    smart_pointers
+    strings_object
+    deep_vs_shallow
+    memory_block
+    rvalue_vs_lvalue
+    type_casting
+    const_vs_constexpr
+    rvo
+    auto_vs_decltype
+    noexcept
+    override_final
+  )
+
+set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/cpp_tutor_ut_main.cpp
@@ -15,164 +34,85 @@ add_executable(cppTutorUT
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_object.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
 
-add_executable(strings_1
+set(strings_1_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_1_main.cpp)
 
-add_executable(strings_2
+set(strings_2_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_2_main.cpp)
 
-add_executable(strings_3
+set(strings_3_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_3_main.cpp)
 
-add_executable(pointers
+set(pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers.cpp)
 
-add_executable(smart_pointers
+set(smart_pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_pointers_main.cpp)
 
-add_executable(strings_object
+set(strings_object_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object_main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp)
 
-add_executable(deep_vs_shallow
+set(deep_vs_shallow_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/deep_vs_shallow.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/deep_vs_shallow_main.cpp)
 
-add_executable(memory_block
+set(memory_block_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/memory_block.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/memory_block_main.cpp)
 
-add_executable(rvalue_vs_lvalue
+set(rvalue_vs_lvalue_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/rvalue_vs_lvalue_main.cpp)
 
-add_executable(type_casting
+set(type_casting_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/type_casting_main.cpp)
 
-add_executable(const_vs_constexpr
+set(const_vs_constexpr_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/const_vs_constexpr.cpp)
 
-add_executable(rvo
+set(rvo_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/rvo.cpp)
 
-add_executable(auto_vs_decltype
+set(auto_vs_decltype_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/auto_vs_decltype.cpp)
 
-add_executable(noexcept
+set(noexcept_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/noexcept_main.cpp)
 
-add_executable(override_final
+set(override_final_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/override_final_main.cpp)
 
-target_include_directories(strings_1 PRIVATE SYSTEM
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
+# Define executables and set the include directories
+foreach( executable ${cppTutor_EXECUTABLES} )
+    add_executable( ${executable} ${${executable}_SOURCES} )
 
+    target_include_directories(${executable} PRIVATE SYSTEM
+      ${PROJECT_BINARY_DIR}/include/
+      ${CMAKE_CURRENT_SOURCE_DIR}/include
+      )
+
+target_compile_options(${executable} PRIVATE
+  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:AppleClang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+endforeach()
+
+# Additional set-up for unit tests
 target_include_directories(cppTutorUT PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-  ${PROJECT_BINARY_DIR}/include/
 )
-
-target_include_directories(pointers PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-target_include_directories(pointers PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(strings_object PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/
-)
-
-target_include_directories(deep_vs_shallow PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/
-)
-
-target_include_directories(smart_pointers PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(memory_block PRIVATE SYSTEM
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-target_include_directories(rvalue_vs_lvalue PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(const_vs_constexpr PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(rvo PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(auto_vs_decltype PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(override_final PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-target_include_directories(noexcept PRIVATE SYSTEM
-  ${PROJECT_BINARY_DIR}/include/
-)
-
-option (MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
-option (COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
-
-configure_file (
-  ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in
-  ${PROJECT_BINARY_DIR}/include/cpp_tutor.h
-  )
-
-set(executables cppTutorUT)
-
-target_compile_options(cppTutorUT PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>")
-
-target_compile_options(strings_1 PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(strings_2 PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(strings_3 PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(pointers PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(smart_pointers PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(strings_object PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(auto_vs_decltype PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(override_final PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
-
-target_compile_options(noexcept PRIVATE
-  "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
 
 if(UNIX)
   target_link_libraries(cppTutorUT PRIVATE pthread)
 endif()
+
+# Configure the cpp_tutor.h header file
+option(MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
+option(COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
+
+configure_file(
+  ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in
+  ${PROJECT_BINARY_DIR}/include/cpp_tutor.h
+  )

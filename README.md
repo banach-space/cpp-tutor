@@ -3,39 +3,89 @@ cpp-tutor
 [![Build Status](https://travis-ci.org/banach-space/cpp-tutor.svg?branch=master)](https://travis-ci.org/banach-space/cpp-tutor)
 [![Build status](https://ci.appveyor.com/api/projects/status/axf91gjs67eoms4s/branch/add_appveyor?svg=true)](https://ci.appveyor.com/project/banach-space/cpp-tutor/branch/add_appveyor)
 
-Code examples that I use for tutoring C++.
+Code examples for tutoring modern C++.
 
 The intent of this tutorial is to give a quick overview of some of the most
-important and interesting features of C++, including new additions in the
-latest revision of the language (C++17 at the point of writing this). It is
-assumed that you already know how to program and are familiar with
-object-oriented design.
+important and interesting features of C++, and to do so in a form of complete
+and self-contained examples. It focuses on modern C++ (C++11/C++14/C++17), but
+there are also some pre C++11 and C-specific examples for comparison. It's by
+no means complete - quite the contrary. It aim is to be:
+  * **Concise**: the examples are short, yet complete - to the point. There's a
+    source file implementing a `main` function for each item and you can study it
+    in complete isolation from other items.
+  * **Selective**: the examples emphasise features and corner cases most likely
+    encountered when _just_ starting with modern C++. They focus on key points
+    rather then presenting the complete picture. Less is more.
+  * **Clear**: the examples sacrifice code quality in favour of code clarity
+    and readability, e.g. in some cases there's more comments than code. Also,
+    see the [disclaimer](#disclaimer)
+
+It is assumed that you already:
+  * know some basic C++
+  * are familiar with object-oriented programming
+
+The code samples presented here will be helpful if you're switching to C++ from a
+different object oriented language, are preparing for an interview, or, like
+myself, are mentoring junior C++ developers.
 
 Disclaimer
-------------
+----------
 The examples presented here are meant to highlight (and sometimes exploit) the
 specifics and quirks of the language. To this end, the presented examples may
 exhibit undefined or implementation specific behaviour, or implement solutions
 that are against good coding practices. This is done for educational purposes
-only!
+only and always thoroughly documented.
 
 Status
---------
+------
 **WORK-IN-PROGRESS**
 
 Platform Support
---------
+----------------
 The only requirement for **cpp-tutor** is a C++17 compliant compiler. It is
-supported on Linux, Mac OS X and Windows and regularly tested on the following
-configurations (extracted from the CI files: `.travis.yml` and `appveyor.yml`):
+supported on Linux, Mac OS X and Windows and is regularly tested against the
+following configurations (extracted from the CI files: `.travis.yml` and
+`appveyor.yml`):
   * Linux Ubuntu 16.04 (GCC-7 and LLVM-7)
   * Windows (Visual Studio 2015)
   * Mac OS X 10.13 (Apple LLVM 10)
 
-Please refer to the instructions
+Locally I used GCC-8.2.1 and LLVM-7 for development. Please refer to the CI
+logs (links at the top of the page) for reference setups.
+
+Usage
+-----
+The [items](#tems) discussed here are independent and you can study them in any
+order that works for you. Once you choose an item that's of interest to you, go
+through the links and code samples available here. Next,
+[build](#build-instructions) and run it.  Most binary files print to `stdout`.
+Make sure that you understand where the output comes from, what it means that
+and that it matches the comments in the code.
+
+Some examples implement undefined behaviour, contain compiler errors or code
+that leads to memory leaks. Such _broken_ parts of the code are guarded off
+with two preprocessor symbolic constants:
+  * `COMPILATION_ERROR`
+  * `MEMORY_LEAK`
+
+Be default both constants are undefined and hence there are neither compilation
+errors nor memory leaks. Play around by defining them (one at a time),
+recompiling and re-running the examples. Make sure that the generated output
+(or compiler errors) make sense. Comments in the corresponding source files
+might be instrumental in understanding those.
+
+You can (and should) use [Valgrind](http://valgrind.org/) to get a better
+grasp of memory leaks implemented in some of the examples, e.g.:
+```
+$ cd <build_dir>
+$ valgrind smart_pointers
+```
+(`<build_dir>` is the build directory used when [building](#build-instructions)
+the project). Remember to re-build and run `Valgrind`  _before_ and _after_
+defining `MEMORY_LEAK`.
 
 Build Instructions
---------
+------------------
 It is assumed that **cpp-tutor** will be built in `<build-dir>` and that the
 top-level source directory is `<source-dir>`. For brevity, the build
 instructions are presented for Linux only.
@@ -46,18 +96,29 @@ $ cd <source_dir>
 $ git clone https://github.com/abseil/googletest.git
 ```
 
-Next, you can build as follows:
+Next, you can build all the examples as follows:
 ```
 $ cd <build-dir>
 $ cmake <source_dir>
 $ make
 ```
-This will generate all the targets implemented for this project.
+This will generate all the targets implemented for this project. If you want to
+(re-)build a particular example, run:
+```
+$ make <example_name>
+```
+In order to define either `COMPILATION_ERROR` or `MEMORY_LEAK`, re-run CMake:
+```
+$ cmake -DCOMPILATION_ERROR=1 .
+```
+This will update `<build_dir>/include/cpp_tutor.h`, which is auto-generated by
+CMake.
 
-Content
+Items
 --------
 The items covered in this tutorial so far (with some relevant links):
-1. Strings
+1. [Strings](http://cs.stmarys.ca/~porter/csc/ref/c_cpp_strings.html) (even more
+   [strings](https://embeddedartistry.com/blog/2017/7/24/stdstring-vs-c-strings))
    * C-strings vs `std::string` vs `std::string_view`
    * the underlying data-representation
    * SSO ([Short String Optimisation](https://akrzemi1.wordpress.com/2014/04/14/common-optimizations/))
@@ -68,9 +129,9 @@ The items covered in this tutorial so far (with some relevant links):
    * TODO: `malloc\calloc\realloc\free`
    * all forms of `new` and `delete` (for plain datatypes and classes)
    * dynamic array of dynamic objects (a.k.a. 2-dimensional dynamical arrays)
-   * memory leaks caused by mismatch in `new` and `delete` used
+   * memory leaks caused by mismatch in `new` and `delete`
    * deep vs shallow copy
-   * a basic memory manager with the aid of `placement new`
+   * a basic memory manager implemented in terms of `placement new`
    * source files:
      * `pointers.cpp`, `strings_object.cpp`, `strings_object.hpp`,
        `strings_object_main.cpp`, `tests_strings_object.cpp`,
@@ -86,7 +147,7 @@ The items covered in this tutorial so far (with some relevant links):
    * `std::move` vs `std::forward`
    * source files:
      * `rvalue_vs_lvalue_main.cpp`
-5. Move semantics
+5. [Move semantics](https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
    * move constructor and move assign operator
    * source files
      * `memory_block.cpp`, `memory_block_main.cpp`
@@ -95,7 +156,8 @@ The items covered in this tutorial so far (with some relevant links):
    * guaranteed copy elision (C++17)
    * source files:
      * `rvo_main.cpp`
-7. New kewords in modern C++:
+7. [New kewords in C++11](https://www.codeproject.com/Articles/570638/Ten-Cplusplus11-Features-Every-Cplusplus-Developer)
+   and [beyond](https://github.com/AnthonyCalandra/modern-cpp-features):
    * `const` vs `constexpr`, `nullptr`, `auto`, `decltype`
    * source files:
      * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
@@ -105,7 +167,7 @@ License
 --------
 The MIT License (MIT)
 
-Copyright (c) 2018 Andrzej Warzyński
+Copyright (c) 2018-2019 Andrzej Warzyński
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

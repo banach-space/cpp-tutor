@@ -5,7 +5,7 @@ platform:
 
 clone_folder: c:\projects\cpp-tutor
 image:
-- Visual Studio 2015
+- Visual Studio 2017
  
 configuration:
   - Release

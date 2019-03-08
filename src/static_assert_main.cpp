@@ -8,7 +8,7 @@
 // DESCRIPTION:
 //    Demonstrates static_assert and type traits.
 //
-//    Experiment by: 
+//    Experiment by:
 //      * (un-)defining COMPILATION_ERROR
 //    and checking the behaviour before and after.
 //
@@ -55,7 +55,8 @@ int main() {
   struct S {};
   static_assert(std::is_integral<S>() == false);
 
-  static_assert(std::is_same<std::conditional<true, int, double>::type, int>::value);
+  static_assert(
+      std::is_same<std::conditional<true, int, double>::type, int>::value);
 
   // 3. STATIC ASSERT IN CUSTOM TEMPLATES
   A<int, 16> a1;

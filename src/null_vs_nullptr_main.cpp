@@ -15,9 +15,9 @@
 //
 // License: MIT
 //========================================================================
-#include "cpp_tutor.h"
 #include <cassert>
 #include <iostream>
+#include "cpp_tutor.h"
 
 //========================================================================
 // Helper functions

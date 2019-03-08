@@ -36,9 +36,9 @@ struct B final : A
 };
 
 struct C : B {
-  void foo(){}
+  void foo() {}
 #ifdef COMPILATION_ERROR
-  void fez(){}
+  void fez() {}
 #endif
 };
 

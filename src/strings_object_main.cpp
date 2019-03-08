@@ -35,13 +35,13 @@ void print_strings(Strings const &store) {
 // input args)
 void create_stack_object(char *argv[], size_t argc) {
   // stack allocated object
-  Strings store{ argv, argc };
+  Strings store{argv, argc};
   print_strings(store);
 }
 
 // Creates and returns heap allocated instance of Strings (based on input args)
 Strings *get_heap_object(char *argv[], size_t argc) {
-  return new Strings{ argv, argc };
+  return new Strings{argv, argc};
 }
 
 //========================================================================
@@ -54,6 +54,6 @@ int main(int argc, char *argv[]) {
   delete sp;
 
   char buffer[sizeof(Strings)];
-  sp = new (buffer) Strings{ argv, static_cast<size_t>(argc) };
+  sp = new (buffer) Strings{argv, static_cast<size_t>(argc)};
   sp->~Strings();
 }

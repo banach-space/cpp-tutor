@@ -19,7 +19,8 @@
 //    Relevant blog posts:
 //      * https://jonasdevlieghere.com/guaranteed-copy-elision/
 //      * https://blog.tartanllama.xyz/guaranteed-copy-elision/
-//      * https://source.coveo.com/2018/11/07/interaction-between-move-semantic-and-copy-elision-in-c++/
+//      *
+//      https://source.coveo.com/2018/11/07/interaction-between-move-semantic-and-copy-elision-in-c++/
 //      * https://riptutorial.com/cplusplus/example/8222/guaranteed-copy-elision
 //
 //    Relevant compiler flags (GCC and clang):
@@ -49,12 +50,8 @@ class List {
   Node *head_ = nullptr;
 
  public:
-  explicit List() {
-    std::cout << "    Explicit constructor" << std::endl;
-  };
-  List(const List &) {
-    std::cout << "    Copy constructor" << std::endl;
-  }
+  explicit List() { std::cout << "    Explicit constructor" << std::endl; };
+  List(const List &) { std::cout << "    Copy constructor" << std::endl; }
 #ifdef COMPILATION_ERROR
   // In C++11 and C++14 the move constructor is required when returning objects
   // by value from functions. That's because copy elision is optional and
@@ -65,13 +62,9 @@ class List {
   // C++14 (it's required in foo_rvo and foo_nvro).
   List(List &&) = delete;
 #else
-  List(List &&) {
-    std::cout << "    Move constructor" << std::endl;
-  };
+  List(List &&) { std::cout << "    Move constructor" << std::endl; };
 #endif
-  ~List() {
-    std::cout << "    Destructor" << std::endl;
-  }
+  ~List() { std::cout << "    Destructor" << std::endl; }
   List operator=(List) = delete;
   List operator=(List &&) = delete;
 

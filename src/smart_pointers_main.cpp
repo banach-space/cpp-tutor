@@ -36,6 +36,7 @@ class A {
     std::cout << "Destructor for " << m_name << std::endl;
     delete[] m_data;
   }
+
  private:
   std::string m_name;
   int *m_data;
@@ -59,7 +60,7 @@ int main() {
 
   // 1. RAW vs SMART POINTER
   std::cout << "==>   " << sec_num++ << " RAW vs SMART POINTER:" << std::endl;
-  A *obj_a  = new A("Andrzej");
+  A *obj_a = new A("Andrzej");
   std::unique_ptr<A> obj_b(new A("Jack"));
 
   A *obj_a_copy = obj_a;
@@ -89,9 +90,8 @@ int main() {
 
   // 4. MAKE_UNIQUE AND MAKE_SHARED
   std::cout << "==>   " << sec_num++ << " STD::MAKE_UNIQUE" << std::endl;
-#if __cplusplus >=  201403L
+#if __cplusplus >= 201403L
   std::unique_ptr<Player> warzynski = std::make_unique<Player>();
 #endif
   std::shared_ptr<Player> moulson = std::make_shared<Player>();
-
 }

@@ -29,11 +29,11 @@
 // Helper objects/functions
 //========================================================================
 template <typename T, typename S>
-auto multiply(T lhs, S rhs)->decltype(lhs * rhs) {
+auto multiply(T lhs, S rhs) -> decltype(lhs * rhs) {
   return lhs * rhs;
 }
 
-template<typename T, typename S>
+template <typename T, typename S>
 auto fpmin(T x, S y) -> decltype(x < y ? x : y) {
   return x < y ? x : y;
 }
@@ -58,10 +58,10 @@ int main() {
   }
 
   // 2. auto INSTEAD OF TYPE SPECIFIER FOR SCALAR VARS
-  int x = int();        // x is an int, initialized to 0
+  int x = int();  // x is an int, initialized to 0
   assert(x == 0);
 
-  const int &crx = x;   // crx is a const int& that refers to x
+  const int &crx = x;  // crx is a const int& that refers to x
   x = 42;
   assert(crx == 42 && x == 42);
 
@@ -84,7 +84,7 @@ int main() {
 #ifdef COMPILATION_ERROR
   const int c = 0;
   auto &rc = c;
-  rc = 44;                // error: const qualifier was not removed
+  rc = 44;  // error: const qualifier was not removed
 #endif
 
   // 3. decltype (multiply uses decltype)

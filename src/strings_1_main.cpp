@@ -20,7 +20,7 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
 #include <string_view>
 #endif
 
@@ -29,9 +29,9 @@
 int main() {
   // 1. DEFINE THE STRINGS
   char hello_c[] = "Hello World!";
-  const char * hello_c_c = "Hello World!";
+  const char* hello_c_c = "Hello World!";
   std::string hello_cpp(hello_c);
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
   std::string_view hello_sv(hello_cpp);
 #endif
 
@@ -39,7 +39,7 @@ int main() {
   std::cout << "C-string (char[]): " << hello_c << std::endl;
   std::cout << "C-string (const char*): " << hello_c_c << std::endl;
   std::cout << "C++ string: " << hello_cpp << std::endl;
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
   std::cout << "C++ string_view: " << hello_sv << std::endl;
 #endif
   std::cout << std::endl;
@@ -48,7 +48,7 @@ int main() {
   std::cout << "Size of hello_c: " << sizeof(hello_c) << std::endl;
   std::cout << "Size of hello_c_c: " << sizeof(hello_c_c) << std::endl;
   std::cout << "Size of hello_cpp: " << sizeof(hello_cpp) << std::endl;
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
   std::cout << "Size of hello_sv: " << sizeof(hello_sv) << std::endl;
 #endif
   std::cout << std::endl;
@@ -67,7 +67,7 @@ int main() {
   std::reverse(hello_cpp.begin(), hello_cpp.end());
   std::cout << "Reverse of hello_cpp: " << hello_cpp << std::endl;
 
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
   // Compiler error
   // std::reverse(&hello_sv);
   // std::reverse(hello_sv.begin(), hello_sv.end());

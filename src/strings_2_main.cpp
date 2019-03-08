@@ -23,22 +23,23 @@
 #include <iostream>
 #include <new>
 #include <string>
-#if __cplusplus >=  201703L
+#if __cplusplus >= 201703L
 #include <string_view>
 #endif
 
 void* operator new(std::size_t count) {
-    std::cout << "[new]   " << count << " bytes" << std::endl;
-    return std::malloc(count);
+  std::cout << "[new]   " << count << " bytes" << std::endl;
+  return std::malloc(count);
 }
 
-void operator delete(void *raw_memory) noexcept {
-    if (nullptr == raw_memory) {
-      return;
-    }
+void operator delete(void* raw_memory) noexcept {
+  if (nullptr == raw_memory) {
+    return;
+  }
 
-    std::cout << "[delete]   " << "addr: " << raw_memory << std::endl;
-    std::free(raw_memory);
+  std::cout << "[delete]   "
+            << "addr: " << raw_memory << std::endl;
+  std::free(raw_memory);
 }
 
 void getString(const std::string& str) {}
@@ -55,9 +56,13 @@ int main() {
 
   std::string small = {"0123456789"};
   std::string large = {"0123456789abcdefghijklmnopqrs"};
-  std::string very_large = {"0123456789ABCDEFGHIKLMNOPQRSabcdefghijklmnopqrs0123456789ABCDEFGHIKLMNOPQRSabcdefghijklmnopqrs"};
+  std::string very_large = {
+      "0123456789ABCDEFGHIKLMNOPQRSabcdefghijklmnopqrs0123456789ABCDEFGHIKLMNOP"
+      "QRSabcdefghijklmnopqrs"};
 
-  std::cout << std::endl << "==>   " << sec_num++ << " Explicit constructor call:" << std::endl;
+  std::cout << std::endl
+            << "==>   " << sec_num++
+            << " Explicit constructor call:" << std::endl;
 
   std::string five_chars("AAAAA");
   std::string fifteen_chars(15, 'B');
@@ -66,7 +71,9 @@ int main() {
 
   // 2. CREATE SUBSTRINGS + string_view
 #if __cplusplus >= 201703L
-  std::cout << std::endl << "==>   " << sec_num++ << " Substrings + std::string_view:" << std::endl;
+  std::cout << std::endl
+            << "==>   " << sec_num++
+            << " Substrings + std::string_view:" << std::endl;
 
   std::string small_substr = small.substr(5);
   std::string large_substr = large.substr(15);
@@ -86,7 +93,8 @@ int main() {
 
   // 4. getStringView
 #if __cplusplus >= 201703L
-  std::cout << std::endl << "==>   " << sec_num++ << " getStringView:" << std::endl;
+  std::cout << std::endl
+            << "==>   " << sec_num++ << " getStringView:" << std::endl;
 
   getStringView(large);
   getStringView("0123456789-123456789-123456789-123456789");

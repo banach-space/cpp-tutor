@@ -9,25 +9,22 @@
 //  Illustrates the noexcept keyword and demonstrates that std::vector has
 //  different behavior if the type's move constructor is marked noexcept. This
 //  reason behind this is very well explained here:
-//   * https://www.reddit.com/r/cpp_questions/comments/51btqw/why_does_stdvector_have_different_behavior_if_the/
+//   *
+//   https://www.reddit.com/r/cpp_questions/comments/51btqw/why_does_stdvector_have_different_behavior_if_the/
 //
 // License: MIT
 //========================================================================
-#include <vector>
 #include <iostream>
+#include <vector>
 
 //========================================================================
 // Helper functions and data structures
 //========================================================================
 // Throwing in foo triggers a call to std::terminate
-void foo() noexcept(true) {
-  throw 13;
-}
+void foo() noexcept(true) { throw 13; }
 
 // Throwing in bar is fine
-void bar() noexcept(false) {
-  throw 13;
-}
+void bar() noexcept(false) { throw 13; }
 
 // A is a trivial class with it's move constructor marked as noexcept. Note
 // that move-constructing means that the id of the object moved-from is
@@ -54,7 +51,7 @@ struct A {
   }
 
   // Move assignment operator.
-  A &operator=(A &&other)  = delete;
+  A &operator=(A &&other) = delete;
 
   // Destructor.
   ~A() { std::cout << "  A: destructing object: " << id << std::endl; }
@@ -139,7 +136,7 @@ int main() {
   // 3. THROW AN EXCEPTION INSIDE A FUNCTION DECORATED WITH noexcept(false)
   try {
     bar();
-  } catch(...) {
+  } catch (...) {
     std::cout << "Exception in bar caught" << std::endl;
   }
 
@@ -152,7 +149,7 @@ int main() {
 
   try {
     foo();
-  } catch(...) {
+  } catch (...) {
     std::cout << "Exception in foo caught" << std::endl;
   }
 }

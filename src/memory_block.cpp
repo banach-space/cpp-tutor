@@ -38,8 +38,7 @@ MemoryBlock::MemoryBlock(const MemoryBlock &other)
   std::copy(other.m_data, other.m_data + m_length, m_data);
 }
 
-MemoryBlock&
-MemoryBlock::operator=(const MemoryBlock &other) {
+MemoryBlock &MemoryBlock::operator=(const MemoryBlock &other) {
   std::cout << "In operator=(const MemoryBlock&). length = " << other.m_length
             << ". Copying resource." << std::endl;
 
@@ -54,10 +53,7 @@ MemoryBlock::operator=(const MemoryBlock &other) {
   return *this;
 }
 
-size_t
-MemoryBlock::length() const {
-  return m_length;
-}
+size_t MemoryBlock::length() const { return m_length; }
 
 MemoryBlock::MemoryBlock(MemoryBlock &&other) noexcept
     : m_length(0), m_data(nullptr) {
@@ -75,8 +71,7 @@ MemoryBlock::MemoryBlock(MemoryBlock &&other) noexcept
   other.m_length = 0;
 }
 
-MemoryBlock&
-MemoryBlock::operator=(MemoryBlock &&other) noexcept {
+MemoryBlock &MemoryBlock::operator=(MemoryBlock &&other) noexcept {
   std::cout << "In operator=(MemoryBlock&&). length = " << other.m_length << "."
             << std::endl;
 

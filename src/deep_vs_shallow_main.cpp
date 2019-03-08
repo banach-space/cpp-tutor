@@ -17,7 +17,6 @@
 #include <deep_vs_shallow.hpp>
 #include "cpp_tutor.h"
 
-
 int main() {
   // 1. SHALLOW COPY
   Shallow obj_a;

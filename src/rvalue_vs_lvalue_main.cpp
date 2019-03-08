@@ -23,31 +23,26 @@ class SomeClass {
   int a = 0xdeadbeef;
 };
 
-void foo(SomeClass &arg) {
-  return;
-}
+void foo(SomeClass &arg) { return; }
 
-void bar(SomeClass &&arg) {
-  return;
-}
+void bar(SomeClass &&arg) { return; }
 
-void baz(const SomeClass &arg) {
-  return;
-}
+void baz(const SomeClass &arg) { return; }
 
-void overloaded( const int &arg ) { std::cout << "    Pass by lvalue\n"; }
-void overloaded( int && arg ) { std::cout << "    Pass by rvalue\n"; }
+void overloaded(const int &arg) { std::cout << "    Pass by lvalue\n"; }
+void overloaded(int &&arg) { std::cout << "    Pass by rvalue\n"; }
 
-template< typename T >
-void forwarding( T && arg ) {
-    std::cout << "  Call via std::forward: " << std::endl;
-    overloaded( std::forward< T >( arg ) );
+template <typename T>
+void forwarding(T &&arg) {
+  std::cout << "  Call via std::forward: " << std::endl;
+  overloaded(std::forward<T>(arg));
 
-    std::cout << "  Call via std::move: " << std::endl;;
-    overloaded( std::move( arg ) );
+  std::cout << "  Call via std::move: " << std::endl;
+  ;
+  overloaded(std::move(arg));
 
-    std::cout << "  Call by simple passing: " << std::endl;
-    overloaded( arg );
+  std::cout << "  Call by simple passing: " << std::endl;
+  overloaded(arg);
 }
 
 //========================================================================
@@ -57,27 +52,27 @@ int main() {
   // 1. L-VALUE REFERENCES
   SomeClass b;
   SomeClass &c = b;
-  assert (&b == &c);
+  assert(&b == &c);
 
   int x;
-  int &ref1 = x; // A
+  int &ref1 = x;  // A
 #ifdef COMPILATION_ERROR
-  int &ref2 = 5; // B
+  int &ref2 = 5;  // B
 #endif
 
-  const int &ref3 = x; // C
-  const int &ref4 = 5; // D
+  const int &ref3 = x;  // C
+  const int &ref4 = 5;  // D
 
   // 2. R-VALUE REFERENCES
 #ifdef COMPILATION_ERROR
-  int &&ref5 = x; // E
+  int &&ref5 = x;  // E
 #endif
-  int &&ref6 = 5; // F
+  int &&ref6 = 5;  // F
 
 #ifdef COMPILATION_ERROR
-  const int &&ref7 = x; // G
+  const int &&ref7 = x;  // G
 #endif
-  const int &&ref8 = 5; // H
+  const int &&ref8 = 5;  // H
 
   // 3. FUNCTION CALLS
   SomeClass a;

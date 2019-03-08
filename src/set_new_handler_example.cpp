@@ -29,12 +29,12 @@ class Z {
 int main() {
   std::set_new_handler(outOfMemory);
 
-  char* memory= new char[sizeof(Z)];
-  Z* a = new(memory) Z;
+  char* memory = new char[sizeof(Z)];
+  Z* a = new (memory) Z;
 
-  char* memory2= new char[5*sizeof(Z)];
-  Z* b = new(memory2) Z[5];
+  char* memory2 = new char[5 * sizeof(Z)];
+  Z* b = new (memory2) Z[5];
 
-  char* memory3= new char[4*sizeof(Z)];
-  Z* c = new(memory3) Z[500];
+  char* memory3 = new char[4 * sizeof(Z)];
+  Z* c = new (memory3) Z[500];
 }

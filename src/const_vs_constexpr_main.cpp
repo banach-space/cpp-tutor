@@ -30,7 +30,7 @@ constexpr int gcd_cpp11(int a, int b) {
 
 // C++14 implementation - many restrictions are relaxed, e.g. loops and auto
 // are now allowed
-#if __cplusplus >=  201403L
+#if __cplusplus >= 201403L
 constexpr auto gcd_cpp14(int a, int b) {
   while (b != 0) {
     auto t = b;
@@ -45,14 +45,21 @@ constexpr auto gcd_cpp14(int a, int b) {
 // The following functions implement the Fibonacci sequence calculation. The
 // 1st implementation uses templates, and the 2nd constexpr.
 //------------------------------------------------------------------------
-template <unsigned n> struct fibonacci_tmp {
+template <unsigned n>
+struct fibonacci_tmp {
   static const unsigned value =
       fibonacci_tmp<n - 1>::value + fibonacci_tmp<n - 2>::value;
 };
 
-template <> struct fibonacci_tmp<0> { static const unsigned value = 0; };
+template <>
+struct fibonacci_tmp<0> {
+  static const unsigned value = 0;
+};
 
-template <> struct fibonacci_tmp<1> { static const unsigned value = 1; };
+template <>
+struct fibonacci_tmp<1> {
+  static const unsigned value = 1;
+};
 
 constexpr unsigned fibonacci_cxp(const unsigned x) {
   return x <= 1 ? x : fibonacci_cxp(x - 1) + fibonacci_cxp(x - 2);
@@ -65,19 +72,23 @@ int main() {
   // 1. CONST VS COMPILE-TIME-CONST
   // Integers with const qualifiers are compile time constants. Doubles aren't
   // and require constexpr to become compile time consts.
-  const int var_a = 10;                   // can be evaluated at compile time (i.e. compile time constant)
+  const int var_a =
+      10;  // can be evaluated at compile time (i.e. compile time constant)
 #ifdef COMPILATION_ERROR
-  const double var_b = 3.8;               // cannot be evaluated at compile time (i.e. run-time constant)
+  const double var_b =
+      3.8;  // cannot be evaluated at compile time (i.e. run-time constant)
 #else
-  constexpr double var_b = 3.8;           // can be evaluated at compile time (i.e. compile time constant)
+  constexpr double var_b =
+      3.8;  // can be evaluated at compile time (i.e. compile time constant)
 #endif
 
-  const int var_c = var_a + 5;            // compile time constant
-  constexpr double var_d = var_b - 2.7;   // compile time constant
+  const int var_c = var_a + 5;           // compile time constant
+  constexpr double var_d = var_b - 2.7;  // compile time constant
 
   // 2. CONST vs CONSTEXPR for pointers
   const int *ptr_e;
-  constexpr int *ptr_f = nullptr;         // equivalent to int *const ptr_f (as opposed to const int *ptr_f)
+  constexpr int *ptr_f = nullptr;  // equivalent to int *const ptr_f (as opposed
+                                   // to const int *ptr_f)
 
   // 3. GCD
   // Compile time calculations

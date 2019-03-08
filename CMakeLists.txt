@@ -25,6 +25,7 @@ set(cppTutor_EXECUTABLES
     noexcept
     override_final
     null_vs_nullptr
+    static_assert
   )
 
 set(cppTutorUT_SOURCES
@@ -86,6 +87,9 @@ set(override_final_SOURCES
 
 set(null_vs_nullptr_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/null_vs_nullptr_main.cpp)
+
+set(static_assert_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/static_assert_main.cpp)
 
 # Define executables and set the include directories
 foreach( executable ${cppTutor_EXECUTABLES} )

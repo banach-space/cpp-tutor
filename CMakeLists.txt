@@ -123,6 +123,7 @@ endif()
 # Configure the cpp_tutor.h header file
 option(MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
 option(COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
+option(DANGLING_REF_OR_PTR "Enable code that leads to dandling refs/ptrs" OFF)
 
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in

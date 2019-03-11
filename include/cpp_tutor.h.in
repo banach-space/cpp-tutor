@@ -12,3 +12,4 @@
 //========================================================================
 #cmakedefine MEMORY_LEAK
 #cmakedefine COMPILATION_ERROR
+#cmakedefine DANGLING_REF_OR_PTR

@@ -4,9 +4,24 @@ project(cpp-tutor)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
+# COMPILER FLAGS
+# ==============
+# Note that warnings are expected:
+#   * the code deliberately doesn't follow the best coding practices, but
+#   instead focuses on highlighting corner cases which indeed trigger warnings
+#   * as part of the tutorial, compiler diagnostics (and indeed warnings) are
+#   used to identify problematic code
+# For this reason we don't want to suppress or fix the warnings and we don't
+# use `-Werror` (or /WX for MSVC). Also, don't use `-Wall` as that could
+# enables too many checks.
 set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics)
 set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always)
+set(cpp-tutor_COMPILER_OPTIONS_MSVC)
 
+
+# TARGETS AND THE CORRESPONDING SOURCE FILES
+# ==============================================
 set(cppTutor_EXECUTABLES
     cppTutorUT
     strings_1
@@ -95,7 +110,9 @@ set(static_assert_SOURCES
 set(delete_vs_default_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/delete_vs_default_main.cpp)
 
-# Define executables and set the include directories
+
+# EXECUTABLES AND THE INCLUDE DIRECTORIES FOR TARGETS
+# ===================================================
 foreach( executable ${cppTutor_EXECUTABLES} )
     add_executable( ${executable} ${${executable}_SOURCES} )
 
@@ -107,10 +124,13 @@ foreach( executable ${cppTutor_EXECUTABLES} )
 target_compile_options(${executable} PRIVATE
   "$<$<CXX_COMPILER_ID:Clang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
   "$<$<CXX_COMPILER_ID:AppleClang>:${cpp-tutor_COMPILER_OPTIONS_CLANG}>"
-  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>")
+  "$<$<CXX_COMPILER_ID:GNU>:${cpp-tutor_COMPILER_OPTIONS_GNU}>"
+  "$<$<CXX_COMPILER_ID:MSVC>:${cpp-tutor_COMPILER_OPTIONS_MSVC}>")
 endforeach()
 
-# Additional set-up for unit tests
+
+# EXTRA SET-UP FOR UNIT TESTS
+# ===========================
 target_include_directories(cppTutorUT PRIVATE SYSTEM
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/include
@@ -120,7 +140,9 @@ if(UNIX)
   target_link_libraries(cppTutorUT PRIVATE pthread)
 endif()
 
-# Configure the cpp_tutor.h header file
+
+# CONFIGURE THE CPP_TUTOR.H HEADER FILE
+# =====================================
 option(MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
 option(COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
 option(DANGLING_REF_OR_PTR "Enable code that leads to dandling refs/ptrs" OFF)

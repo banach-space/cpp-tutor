@@ -41,10 +41,12 @@ auto multiply(T lhs, S rhs) -> decltype(lhs * rhs) {
   return lhs * rhs;
 }
 
-// The return value of the tenary operator "?" is an lvalue and if expr is an
-// lvalue, then decltype(expr) is SomeType&. Therefore, without
-// std::remove_reference the following would be returning a ref to a local
-// variable.
+// The return value of the tenary operator "?" might be an lvalue (e.g. when
+// both arguments are l-values) and if expr is an lvalue, then decltype(expr)
+// is SomeType&. Therefore, without std::remove_reference the following is
+// potentially returning a ref to a local variable. This example was originally
+// discussed here:
+//  * http://thbecker.net/articles/auto_and_decltype/section_08.html
 template <typename T, typename S>
 auto min_func(T x, S y) ->
 #ifndef DANGLING_REF_OR_PTR
@@ -81,7 +83,7 @@ int main() {
   const int &crx = x;
   assert(crx == x);
 
-  // 2.1  Auto without ref - reference and top level cons specifier are
+  // 2.1  Auto without ref - reference and top level const specifier are
   // _ignored_
   auto something =
       crx;  // something is an int, intialised with crx, that is not const
@@ -154,6 +156,6 @@ int main() {
   // Always safe
   std::cout << multiply(z, crz) << std::endl;
   // Check the implementation for comments, but this might be returning a ref
-  // to a local variable.
+  // to a local variable (both z and crz are l-values).
   std::cout << min_func(z, crz) << std::endl;
 }

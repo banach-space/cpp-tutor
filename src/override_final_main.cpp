@@ -6,7 +6,13 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//  Demonstrate the usage of override and final.
+//    Demonstrate the usage of override and final. This example doesn't print
+//    anything. Instead study the compiler errors when COMPILATION_ERROR is
+//    defined (otherwise this example builds cleanly).
+//
+//    Experiment by:
+//      * (un-)defining COMPILATION_ERROR
+//    and checking the compiler errors before and after.
 //
 // License: MIT
 //========================================================================
@@ -16,7 +22,7 @@
 // Helper objects
 //========================================================================
 struct A {
-  virtual void foo() {}
+  virtual void foo(int a) {}
   virtual void fez() {}
   void bar() {}
 };
@@ -27,10 +33,11 @@ struct B : A
 struct B final : A
 #endif
 {
-  void foo() override {}
   void fez() final{};
-#ifdef COMPILATION_ERROR
-  void foo() const override {}
+#ifndef COMPILATION_ERROR
+  void foo(int a) override {}
+#else
+  void foo(float a) override {}
   void bar() override {}
 #endif
 };

@@ -8,6 +8,10 @@
 // DESCRIPTION:
 //    Demonstrates the =delete and =default mechanisms.
 //
+//    Experiment by:
+//      * (un-)defining COMPILATION_ERROR
+//    and checking the compiler errors before and after.
+//
 //
 // License: MIT
 //========================================================================
@@ -15,6 +19,8 @@
 #include <iostream>
 #include <string>
 #include <utility>
+
+#include "cpp_tutor.h"
 
 //========================================================================
 // Helper objects/functions

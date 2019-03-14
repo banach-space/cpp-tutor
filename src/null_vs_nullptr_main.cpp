@@ -13,6 +13,10 @@
 //    GCC and CLANG give different warnings - it is worth building with both
 //    and comparing.
 //
+//    Experiment by:
+//      * (un-)defining COMPILATION_ERROR
+//    and checking the compiler errors before and after.
+//
 // License: MIT
 //========================================================================
 #include <cassert>
@@ -35,13 +39,17 @@ void bar(int *pi) { std::cout << "bar: Pointer to integer overload\n"; }
 //========================================================================
 int main() {
   // 1. EQUIVALENCE OF 0,NULL AND nullptr - INTEGERS AND POINTERS
+  // Init integer with a pointer value (i.e. NULL)
   int var_a = NULL;
+  // Init pointer with an integer (i.e. 0)
   int *var_b = 0;
   assert(0 == NULL);
   assert(0 == nullptr);
 
 #ifdef COMPILATION_ERROR
+  // Cannot init integer with nullptr_t
   int var_c = nullptr;
+  // Cannot init a pointer with an arbitrary integer
   int *var_d = 10;
 #endif
 

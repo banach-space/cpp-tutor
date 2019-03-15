@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4.3 FATAL_ERROR)
 
 project(cpp-tutor)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 
 # COMPILER FLAGS
@@ -42,6 +42,11 @@ set(cppTutor_EXECUTABLES
     null_vs_nullptr
     static_assert
     delete_vs_default
+    init_stack_vs_global_vars
+    init_aggregate
+    init_types_of
+    init_brace_elision
+    init_list_gotchas
   )
 
 set(cppTutorUT_SOURCES
@@ -110,6 +115,21 @@ set(static_assert_SOURCES
 set(delete_vs_default_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/delete_vs_default_main.cpp)
 
+set(init_stack_vs_global_vars_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/init_stack_vs_global_vars_main.cpp)
+
+set(init_aggregate_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/init_aggregate_main.cpp)
+
+set(init_brace_elision_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/init_brace_elision_main.cpp)
+
+set(init_types_of_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/init_types_of_main.cpp)
+
+set(init_list_gotchas_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/init_list_gotchas_main.cpp)
+
 
 # EXECUTABLES AND THE INCLUDE DIRECTORIES FOR TARGETS
 # ===================================================
@@ -146,6 +166,7 @@ endif()
 option(MEMORY_LEAK "Use the implementation exhibiting memory leaks" OFF)
 option(COMPILATION_ERROR "Enable code that leads to compilation errors" OFF)
 option(DANGLING_REF_OR_PTR "Enable code that leads to dandling refs/ptrs" OFF)
+option(RUNTIME_ERROR "Enable code that leads to run-time errors (e.g. UB)." OFF)
 
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in

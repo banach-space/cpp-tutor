@@ -162,6 +162,17 @@ The items covered in this tutorial so far (with some relevant links):
    * source files:
      * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
        `auto_vs_decltype_main.cpp`
+8. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
+   (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
+   * init values for variables with automatic and static storage duration
+   * types of initialization (direct, copy, value, list)
+   * brace elistion in list initialization
+   * initializing aggregate types
+   * various gotchas when using initilizer lists
+   * source files:
+    * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
+      `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
+      `init_list_gotchas_main.cpp`
 
 License
 --------

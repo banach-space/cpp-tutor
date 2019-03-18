@@ -162,7 +162,13 @@ The items covered in this tutorial so far (with some relevant links):
    * source files:
      * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
        `auto_vs_decltype_main.cpp`
-8. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
+8. [Explicit type conversion](https://www.learncpp.com/cpp-tutorial/4-4a-explicit-type-conversion-casting/) (a.k.a. casting):
+    * explicit vs implicit type conversion
+    * C vs C++ style casts (`static_cast`, `dynamic_cast`, `reinterpret_cast`,
+      `const_cast`)
+    * source files:
+      * `type_casting_main.cpp`
+9. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
    (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
    * init values for variables with automatic and static storage duration
    * types of initialization (direct, copy, value, list)

@@ -55,7 +55,7 @@ logs (links at the top of the page) for reference setups.
 
 Usage
 -----
-The [items](#tems) discussed here are independent and you can study them in any
+The [items](#items) discussed here are independent and you can study them in any
 order that works for you. Once you choose an item that's of interest to you, go
 through the links and code samples available here. Next,
 [build](#build-instructions) and run it.  Most binary files print to `stdout`.

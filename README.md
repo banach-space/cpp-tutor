@@ -36,6 +36,9 @@ exhibit undefined or implementation specific behaviour, or implement solutions
 that are against good coding practices. This is done for educational purposes
 only and always thoroughly documented.
 
+This repository is self-published and has not been peer-reviewed in the
+traditional sense.
+
 Status
 ------
 **WORK-IN-PROGRESS**

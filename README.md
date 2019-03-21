@@ -161,39 +161,44 @@ The items covered in this tutorial so far (with some relevant links):
      * `pointers.cpp`, `strings_object.cpp`, `strings_object.hpp`,
        `strings_object_main.cpp`, `tests_strings_object.cpp`,
        `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
-3. [Smart pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp?view=vs-2017)
+3. [C++ Unit testing](https://github.com/google/googletest)
+  * GTest and test fixtures
+  * embedding GTest tests into the build system
+  * source files:
+    `cpp_tutor_ut_main.cpp`, `CMakeLists.txt`, `tests_strings_object.cpp`, `tests_strings.cpp`
+4. [Smart pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp?view=vs-2017)
    * `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`
    * `std::make_unqiue` and `std::make_shared`
    * source files:
      * `smart_pointers_main.cpp`
-4. [L-value and R-value](https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c/)
+5. [L-value and R-value](https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c/)
    * l-value vs r-value
    * l-value reference vs l-value to const reference vs r-value reference
    * `std::move` vs `std::forward`
    * source files:
      * `rvalue_vs_lvalue_main.cpp`
-5. [Move semantics](https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
+6. [Move semantics](https://www.cprogramming.com/c++11/rvalue-references-and-move-semantics-in-c++11.html)
    * move constructor and move assign operator
    * source files
      * `memory_block.cpp`, `memory_block_main.cpp`
-6. [Return Value Optimisation](https://en.wikipedia.org/wiki/Copy_elision#Return_value_optimization)
+7. [Return Value Optimisation](https://en.wikipedia.org/wiki/Copy_elision#Return_value_optimization)
    * (N)RVO
    * guaranteed copy elision (C++17)
    * source files:
      * `rvo_main.cpp`
-7. [New kewords in C++11](https://www.codeproject.com/Articles/570638/Ten-Cplusplus11-Features-Every-Cplusplus-Developer)
+8. [New kewords in C++11](https://www.codeproject.com/Articles/570638/Ten-Cplusplus11-Features-Every-Cplusplus-Developer)
    and [beyond](https://github.com/AnthonyCalandra/modern-cpp-features):
    * `const` vs `constexpr`, `nullptr`, `auto`, `decltype`
    * source files:
      * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
        `auto_vs_decltype_main.cpp`
-8. [Explicit type conversion](https://www.learncpp.com/cpp-tutorial/4-4a-explicit-type-conversion-casting/) (a.k.a. casting):
+9. [Explicit type conversion](https://www.learncpp.com/cpp-tutorial/4-4a-explicit-type-conversion-casting/) (a.k.a. casting):
     * explicit vs implicit type conversion
     * C vs C++ style casts (`static_cast`, `dynamic_cast`, `reinterpret_cast`,
       `const_cast`)
     * source files:
       * `type_casting_main.cpp`
-9. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
+10. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
    (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
    * init values for variables with automatic and static storage duration
    * types of initialization (direct, copy, value, list)

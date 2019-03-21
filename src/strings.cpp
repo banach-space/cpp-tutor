@@ -6,11 +6,11 @@
 //  banach-space@github
 //
 // DESCRIPTION:
-//   Helper functions for tutoring the concept of strings in C and C++
+//   Helper functions for teaching the concept of strings in C and C++
 //
 // License: MIT
 //========================================================================
-#include "../include/strings.hpp"
+#include "strings.hpp"
 
 void reverse(char *input_str) {
   if ('\0' == *input_str) {

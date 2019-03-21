@@ -6,7 +6,7 @@
 //  banach-space@github
 //
 // DESCRIPTION:
-//  Google Test based unit tests for Strings
+//  Anit tests for the Strings class (defined in strings_object.cpp)
 //
 // License: Apache License 2.0
 //========================================================================
@@ -19,21 +19,15 @@
 //========================================================================
 // Tests
 //========================================================================
-TEST(Strings, smoke_test) {
+TEST(StringsObject, smoke_test) {
   Strings strs;
 
   ASSERT_EQ(0, strs.size());
 }
 
-TEST(Strings, insert_elements) {
-  std::vector<std::string> test_strings = {
-    "Andrzej",
-    "Warzynski",
-    "Nikita",
-    "Dell",
-    "",
-    "A"
-  };
+TEST(StringsObject, insert_elements) {
+  std::vector<std::string> test_strings = {"Andrzej", "Warzynski", "Nikita",
+                                           "Dell",    "",          "A"};
 
   Strings strs{};
   for (auto str : test_strings) {

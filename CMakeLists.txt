@@ -53,7 +53,7 @@ set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/cpp_tutor_ut_main.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_1.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_object.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
 

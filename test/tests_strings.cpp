@@ -1,12 +1,12 @@
 //========================================================================
 // FILE:
-//  test/tests_session1.cpp
+//  test/tests_strings.cpp
 //
 // AUTHOR:
 //  banach-space@github
 //
 // DESCRIPTION:
-//  Google Test based unit tests for session 1.
+//  Unit tests for functions for reversing strings (defined in strings.cpp)
 //
 // License: Apache License 2.0
 //========================================================================
@@ -20,12 +20,11 @@
 //========================================================================
 // Test Fixtures
 //========================================================================
-struct CciChapter1_Q2 : public ::testing::Test {
-
+struct TestReverseStrings : public ::testing::Test {
   // A vector of test strings tuples: {original string, reversed string}
   std::vector<std::tuple<std::string, std::string>> test_strings;
 
-  CciChapter1_Q2() {
+  TestReverseStrings() {
     test_strings = {{{""}, {""}},
                     {{"aba"}, {"aba"}},
                     {{"abba"}, {"abba"}},
@@ -34,7 +33,7 @@ struct CciChapter1_Q2 : public ::testing::Test {
                     {{"xxxxxxxxxxyyyyyyyyyy"}, {"yyyyyyyyyyxxxxxxxxxx"}}};
   }
 
-protected:
+ protected:
   void SetUp() override {}
   void TearDown() override {}
 };
@@ -42,7 +41,7 @@ protected:
 //========================================================================
 // Tests
 //========================================================================
-TEST_F(CciChapter1_Q2, reverse_c_string) {
+TEST_F(TestReverseStrings, reverse_c_string) {
   for (auto pair : test_strings) {
     // What follows is a bit nasty way of generating a modifiable C-string
     // (i.e.  char*) from a CPP string (i.e. resorting to raw painters and
@@ -65,7 +64,7 @@ TEST_F(CciChapter1_Q2, reverse_c_string) {
   }
 }
 
-TEST_F(CciChapter1_Q2, reverse_cpp_string) {
+TEST_F(TestReverseStrings, reverse_cpp_string) {
   for (auto pair : test_strings) {
     std::string current_str(std::get<0>(pair));
 

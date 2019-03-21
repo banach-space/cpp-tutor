@@ -165,10 +165,10 @@ The items covered in this tutorial so far (with some relevant links):
        `strings_object_main.cpp`, `tests_strings_object.cpp`,
        `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
 3. [C++ Unit testing](https://github.com/google/googletest)
-  * GTest and test fixtures
-  * embedding GTest tests into the build system
-  * source files:
-    `cpp_tutor_ut_main.cpp`, `CMakeLists.txt`, `tests_strings_object.cpp`, `tests_strings.cpp`
+   * GTest and test fixtures
+   * embedding GTest tests into the build system
+   * source files:
+     * `cpp_tutor_ut_main.cpp`, `CMakeLists.txt`, `tests_strings_object.cpp`, `tests_strings.cpp`
 4. [Smart pointers](https://docs.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp?view=vs-2017)
    * `std::unique_ptr`, `std::shared_ptr`, `std::weak_ptr`
    * `std::make_unqiue` and `std::make_shared`
@@ -190,7 +190,7 @@ The items covered in this tutorial so far (with some relevant links):
    * source files:
      * `rvo_main.cpp`
 8. [New kewords in C++11](https://www.codeproject.com/Articles/570638/Ten-Cplusplus11-Features-Every-Cplusplus-Developer)
-   and [beyond](https://github.com/AnthonyCalandra/modern-cpp-features):
+   and [beyond](https://github.com/AnthonyCalandra/modern-cpp-features)
    * `const` vs `constexpr`, `nullptr`, `auto`, `decltype`
    * source files:
      * `const_vs_constexpr_main.cpp`, `null_vs_nullptr_main.cpp`,
@@ -200,18 +200,18 @@ The items covered in this tutorial so far (with some relevant links):
     * C vs C++ style casts (`static_cast`, `dynamic_cast`, `reinterpret_cast`,
       `const_cast`)
     * source files:
-      * `type_casting_main.cpp`
+     * `type_casting_main.cpp`
 10. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
    (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
-   * init values for variables with automatic and static storage duration
-   * types of initialization (direct, copy, value, list)
-   * brace elistion in list initialization
-   * initializing aggregate types
-   * various gotchas when using initilizer lists
-   * source files:
-    * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
-      `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
-      `init_list_gotchas_main.cpp`
+    * init values for variables with automatic and static storage duration
+    * types of initialization (direct, copy, value, list)
+    * brace elistion in list initialization
+    * initializing aggregate types
+    * various gotchas when using initilizer lists
+    * source files:
+     * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
+       `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
+       `init_list_gotchas_main.cpp`
 
 License
 --------

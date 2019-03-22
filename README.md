@@ -200,7 +200,7 @@ The items covered in this tutorial so far (with some relevant links):
     * C vs C++ style casts (`static_cast`, `dynamic_cast`, `reinterpret_cast`,
       `const_cast`)
     * source files:
-     * `type_casting_main.cpp`
+      * `type_casting_main.cpp`
 10. [Initialization in modern C++](https://www.youtube.com/watch?v=SCoewvXablk)
    (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
     * init values for variables with automatic and static storage duration
@@ -209,9 +209,9 @@ The items covered in this tutorial so far (with some relevant links):
     * initializing aggregate types
     * various gotchas when using initilizer lists
     * source files:
-     * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
-       `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
-       `init_list_gotchas_main.cpp`
+      * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
+        `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
+        `init_list_gotchas_main.cpp`
 
 License
 --------

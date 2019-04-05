@@ -81,7 +81,7 @@ files might be instrumental in understanding those.
 
 You can (and should) use [Valgrind](http://valgrind.org/) to get a better
 grasp of memory leaks implemented in some of the examples, e.g.:
-```
+```bash
 $ cd <build_dir>
 $ valgrind smart_pointers
 ```
@@ -106,20 +106,20 @@ top-level source directory is `<source-dir>`. For brevity, the build
 instructions are presented for Linux only.
 
 First, you will need to clone Google Test inside `<source-dir>`:
-```
+```bash
 $ cd <source_dir>
 $ git clone https://github.com/google/googletest.git
 ```
 
 Next, you can build all the examples as follows:
-```
+```bash
 $ cd <build-dir>
 $ cmake <source_dir>
 $ make
 ```
 This will generate all the targets implemented for this project. If you want to
 (re-)build a particular example, run:
-```
+```bash
 $ make <example_name>
 ```
 
@@ -128,7 +128,7 @@ As explained [elsewhere](#usage) in this README.md, some of the examples
 contain code disabled with preprocessor symbols. In order to enable one of
 such blocks, define the corresponding preprocessor symbol by re-running CMake
 like this:
-```
+```bash
 $ cmake -D<PREPROCESSOR_SYMBOL>=1 .
 ```
 

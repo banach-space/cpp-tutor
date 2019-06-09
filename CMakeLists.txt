@@ -4,21 +4,19 @@ project(cpp-tutor)
 
 set(CMAKE_CXX_STANDARD 14)
 
-
 # COMPILER FLAGS
 # ==============
 # Note that warnings are expected:
 #   * the code deliberately doesn't follow the best coding practices, but
-#   instead focuses on highlighting corner cases which indeed trigger warnings
+#     instead focuses on highlighting corner cases which indeed trigger warnings
 #   * as part of the tutorial, compiler diagnostics (and indeed warnings) are
-#   used to identify problematic code
+#     used to identify problematic code
 # For this reason we don't want to suppress or fix the warnings and we don't
-# use `-Werror` (or /WX for MSVC). Also, don't use `-Wall` as that could
-# enables too many checks.
+# use `-Werror` (or /WX for MSVC). Also, don't use `-Wall` as that would
+# enable too many checks.
 set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics)
 set(cpp-tutor_COMPILER_OPTIONS_GNU -fdiagnostics-color=always)
 set(cpp-tutor_COMPILER_OPTIONS_MSVC)
-
 
 # TARGETS AND THE CORRESPONDING SOURCE FILES
 # ==============================================
@@ -50,7 +48,7 @@ set(cppTutor_EXECUTABLES
   )
 
 set(cppTutorUT_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/cpp_tutor_ut_main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings.cpp
@@ -58,7 +56,7 @@ set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
 
 set(strings_1_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_1_main.cpp)
 
 set(strings_2_SOURCES

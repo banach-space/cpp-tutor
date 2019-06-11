@@ -45,10 +45,10 @@ Status
 
 Platform Support
 ----------------
-The only requirement for **cpp-tutor** is a C++17 compliant compiler. It is
-supported on Linux, Mac OS X and Windows and is regularly tested against the
-following configurations (extracted from the CI files: `.travis.yml` and
-`appveyor.yml`):
+The only requirement for **cpp-tutor** is a C++17 compliant compiler and
+`CMake-3.4.3` or newer. It is supported on Linux, Mac OS X and Windows and is
+regularly tested against the following configurations (extracted from the CI
+files: `.travis.yml` and `appveyor.yml`):
   * Linux Ubuntu 16.04 (GCC-7 and LLVM-7)
   * Windows (Visual Studio 2015)
   * Mac OS X 10.13 (Apple LLVM 10)
@@ -122,6 +122,17 @@ This will generate all the targets implemented for this project. If you want to
 ```bash
 $ make <example_name>
 ```
+
+### Switching between C++ standards
+The default C++ standard for the whole project is set to C++14. You can control
+it with the `CMAKE_CXX_STANDARD` `CMake` variable, e.g. to use `C++17`:
+```bash
+$ cd <build-dir>
+$ cmake -DCMAKE_CXX_STANDARD=17 <source_dir>
+$ make
+```
+You will be using this to compile the examples using different standards to
+understand how they evolved.
 
 ### Disabled code
 As explained [elsewhere](#usage) in this README.md, some of the examples

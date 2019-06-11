@@ -6,8 +6,8 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Functions for reversing C and C++ strings - implementations. Key takeaway
-//    - which version is the easiest?
+//    Functions for reversing C and C++ strings - implementations.
+//    Key takeaway - whenever possible, always use algorithms from STL.
 //
 // License: MIT
 //==============================================================================
@@ -39,7 +39,7 @@ void reverse_c_str(char *input_str) {
 void reverse_cpp_str_swap(std::string *input_str) {
   size_t length = input_str->length();
 
-  // Swap character starting from two corners
+  // Swap characters starting from two end points.
   for (size_t ii = 0; ii < length / 2; ii++) {
     std::swap((*input_str)[ii], (*input_str)[length - ii - 1]);
   }

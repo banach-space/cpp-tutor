@@ -16,6 +16,8 @@
 //
 // License: MIT
 //========================================================================
+#include "cpp_tutor.h"
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -28,6 +30,8 @@
 int main() {
   // 1. DEFINE THE STRINGS
   char hello_c[] = "Hello World!";
+  // String literal stored on read-only memory. Although const is not required,
+  // it's read-only, hence trying to modify it triggers UB.
   const char* hello_c_c = "Hello World!";
   std::string hello_cpp(hello_c);
 #if __cplusplus >= 201703L
@@ -56,9 +60,11 @@ int main() {
   reverse_c_str(hello_c);
   std::cout << "Reverse of hello_c: " << hello_c << std::endl;
 
-  // UB
-  // reverse_c_str(const_cast<char*>(hello_c_c));
-  // std::cout << "Reverse of hello_c: " << hello_c << std::endl;
+#ifdef RUNTIME_ERROR
+  // Trying to modify read-only memory - UB
+  reverse_c_str(const_cast<char*>(hello_c_c));
+  std::cout << "Reverse of hello_c: " << hello_c << std::endl;
+#endif
 
   reverse_cpp_str_swap(&hello_cpp);
   std::cout << "Reverse of hello_cpp: " << hello_cpp << std::endl;
@@ -67,10 +73,13 @@ int main() {
   std::cout << "Reverse of hello_cpp: " << hello_cpp << std::endl;
 
 #if __cplusplus >= 201703L
-  // Compiler error
-  // std::reverse(&hello_sv);
-  // std::reverse(hello_sv.begin(), hello_sv.end());
-  // std::cout << "Reverse of hello_sv: " << hello_sv << std::endl;
+#ifdef COMPILATION_ERROR
+  // string_view is non-modifiable!
+  reverse_cpp_str_swap(&hello_sv);
+  reverse_cpp_str_alg(&hello_sv);
+  std::reverse(hello_sv.begin(), hello_sv.end());
+  std::cout << "Reverse of hello_sv: " << hello_sv << std::endl;
+#endif
 #endif
 
   std::cout << std::endl;

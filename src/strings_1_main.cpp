@@ -17,6 +17,7 @@
 // License: MIT
 //========================================================================
 #include "cpp_tutor.h"
+#include "cpp_tutor_helper.h"
 
 #include <algorithm>
 #include <iostream>
@@ -27,7 +28,9 @@
 
 #include "../include/strings_reverse.hpp"
 
-int main() {
+int main(int argc, const char** argv) {
+  cppt::header(argv[0]);
+
   // 1. DEFINE THE STRINGS
   char hello_c[] = "Hello World!";
   // String literal stored on read-only memory. Although const is not required,
@@ -82,5 +85,5 @@ int main() {
 #endif
 #endif
 
-  std::cout << std::endl;
+  cppt::footer(argv[0]);
 }

@@ -57,6 +57,7 @@ set(cppTutorUT_SOURCES
 
 set(strings_1_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp_tutor_helper.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_1_main.cpp)
 
 set(strings_2_SOURCES

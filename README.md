@@ -124,15 +124,16 @@ $ make <example_name>
 ```
 
 ### Switching between C++ standards
-The default C++ standard for the whole project is set to C++14. You can control
-it with the `CMAKE_CXX_STANDARD` `CMake` variable, e.g. to use `C++17`:
+The default C++ standard for the whole project is set to C++14. In order to
+rebuild using `C++11` or `C++17`, use `CMAKE_CXX_STANDARD`. For example, to
+build in `C++17` mode:
 ```bash
 $ cd <build-dir>
 $ cmake -DCMAKE_CXX_STANDARD=17 <source_dir>
 $ make
 ```
-You will be using this to compile the examples using different standards to
-understand how they evolved.
+This will be very helpful when looking at how certain constructs have evolved
+with the language.
 
 ### Disabled code
 As explained [elsewhere](#usage) in this README.md, some of the examples

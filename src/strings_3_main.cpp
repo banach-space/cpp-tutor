@@ -1,22 +1,33 @@
-//========================================================================
+//==============================================================================
 // FILE:
-//  strings_3_main.cpp
+//    strings_3_main.cpp
 //
 // AUTHOR:
 //    banach-space@github
 //
 // DESCRIPTION:
-//  Code samples to help understand:
-//    * performance implications of using std::string vs std::string_view
-//  It utilizes std::string::substr std::string_view::substr and demonstrates
-//  that the latter is much much faster. It's reccomended to build this example
-//  with different compiler optimisations (e.g. -O0 vs -O3).
+//    Content:
+//    - performance comparison of std::string and std::string_view
 //
-//  This file implements a `main` function and is meant to be used as a
-//  standalone project.
+//    This experiment uses the substr method of std::string and
+//    std::string_view to investigate whether one is faster than the other.
+//
+//    Make sure to build this example with different compiler optimisations
+//    (e.g. -O0 vs -O3). This can be achieved by playing with the
+//    CMAKE_BUILD_TYPE CMake variable (switch between Debug and Release), or by
+//    invoking the compiler directly (with -O0 for no optimisations and -O3 for
+//    very optimised code).
+//
+//    Key takeaway:
+//    - Because std::string_view never triggers dynamic allocation, performance
+//      wise is far superior when compared to std::string.
+//
 //
 // License: MIT
-//========================================================================
+//==============================================================================
+#include "cppt_ag.hpp"
+#include "cppt_tools.hpp"
+
 #include <chrono>
 #include <fstream>
 #include <iostream>
@@ -28,15 +39,22 @@
 #include <string_view>
 #endif
 
+//==============================================================================
+// Config for the experiment
+//==============================================================================
 static const int k_substr_len = 30;
 static const int k_num_accesses = 1e7;
 
-int main() {
+//==============================================================================
+// main
+//==============================================================================
+int main(int argc, const char** argv) {
+  cppt::header(argv[0]);
+
   //-------------------------------------------------------------------------
-  // Set-up
+  // SET-UP
   //-------------------------------------------------------------------------
-  // Read the sample text file (it's very long)
-  // TODO This assumes particular location - fix this
+  // Read the sample text file (it's _very_ long)
   std::ifstream in_file("../src/test.txt");
   std::stringstream str_stream;
   str_stream << in_file.rdbuf();
@@ -64,7 +82,7 @@ int main() {
   }
 
   //-------------------------------------------------------------------------
-  // Benchmarking
+  // BENCHMARKING
   //-------------------------------------------------------------------------
   // First std::string
   auto start = std::chrono::steady_clock::now();
@@ -85,9 +103,9 @@ int main() {
       std::chrono::steady_clock::now() - start;
 
   //-------------------------------------------------------------------------
-  // Print results
+  // PRINT RESULTS
   //-------------------------------------------------------------------------
-  std::cout << "Average k_num_accesses times: " << std::endl;
+  std::cout << "Average access times: " << std::endl;
   std::cout << "std::string::substr:      " << duration_str.count()
             << " seconds" << std::endl;
   std::cout << "std::string_view::substr: " << duration_sv.count() << " seconds"
@@ -97,4 +115,6 @@ int main() {
 
   std::cout << "std::string/std::string_view "
             << duration_str.count() / duration_sv.count() << std::endl;
+
+  cppt::footer(argv[0]);
 }

@@ -73,7 +73,9 @@ int main(int argc, const char** argv) {
   size_t sec_num = {1};
   const char message[] = "0123456789-123456789-123456789-123456789";
 
+  //-------------------------------------------------------------------------
   // 1. DEFINE SOME STRINGS
+  //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
   std::cout << sec_num++ << ". COPY ASSIGNMENT:\n";
 
@@ -90,7 +92,9 @@ int main(int argc, const char** argv) {
   std::string sixteen_chars(16, 'C');
   std::string one_hundred_chars(100, 'D');
 
+  //-------------------------------------------------------------------------
   // 2. CREATE SUBSTRINGS + string_view
+  //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
   std::cout << "\n" << sec_num++ << ". SUBSTRINGS + STD::STRING_VIEW:\n";
 
@@ -104,7 +108,9 @@ int main(int argc, const char** argv) {
   std::string_view very_large_sv(very_large);
 #endif
 
+  //-------------------------------------------------------------------------
   // 3. CALL getString
+  //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
   std::cout << "\n" << sec_num++ << ". CALL getString:\n";
 
@@ -112,7 +118,9 @@ int main(int argc, const char** argv) {
   getString("0123456789-123456789-123456789-123456789");
   getString(message);
 
+  //-------------------------------------------------------------------------
   // 4. CALL getStringView
+  //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
 #if __cplusplus >= 201703L
   std::cout << "\n" << sec_num++ << ". CALL getStringView:\n";
@@ -122,7 +130,9 @@ int main(int argc, const char** argv) {
   getStringView(message);
 #endif
 
+  //-------------------------------------------------------------------------
   // 5. DEALLOCATION
+  //-------------------------------------------------------------------------
   std::cout << "\n" << sec_num << ". DEALLOCATE AUTOMATIC VARIABLES:\n";
   std::cout << "(after the closing `{`)\n";
 

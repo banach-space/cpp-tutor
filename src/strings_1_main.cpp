@@ -29,7 +29,9 @@
 int main(int argc, const char** argv) {
   cppt::header(argv[0]);
 
+  //-------------------------------------------------------------------------
   // 1. DEFINE THE STRINGS
+  //-------------------------------------------------------------------------
   char hello_c[] = "Hello World!";
   // Strictly speaking, `const` is not required here. However, since string
   // literals are stored in read-only memory, any attempt to modify it will
@@ -40,7 +42,9 @@ int main(int argc, const char** argv) {
   std::string_view hello_sv(hello_cpp);
 #endif
 
+  //-------------------------------------------------------------------------
   // 2. PRINT THE STRINGS
+  //-------------------------------------------------------------------------
   std::cout << "C-string (char[]): " << hello_c << std::endl;
   std::cout << "C-string (const char*): " << hello_c_c << std::endl;
   std::cout << "C++ string: " << hello_cpp << std::endl;
@@ -49,7 +53,9 @@ int main(int argc, const char** argv) {
 #endif
   std::cout << std::endl;
 
+  //-------------------------------------------------------------------------
   // 3. PRINT THE SIZES
+  //-------------------------------------------------------------------------
   std::cout << "Size of hello_c: " << sizeof(hello_c) << std::endl;
   std::cout << "Size of hello_c_c: " << sizeof(hello_c_c) << std::endl;
   std::cout << "Size of hello_cpp: " << sizeof(hello_cpp) << std::endl;
@@ -58,7 +64,9 @@ int main(int argc, const char** argv) {
 #endif
   std::cout << std::endl;
 
+  //-------------------------------------------------------------------------
   // 4. REVERSE THE STRINGS
+  //-------------------------------------------------------------------------
   reverse_c_str(hello_c);
   std::cout << "Reverse of hello_c: " << hello_c << std::endl;
 

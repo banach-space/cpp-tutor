@@ -150,7 +150,7 @@ in which `PREPROCESSOR_SYMBOL` is one of:
   * `DANGLING_REF_OR_PTR`
   * `RUNTIME_ERROR` 
 
-This will update `<build_dir>/include/cpp_tutor.h`, the CMake auto-generated
+This will update `<build_dir>/include/cppt_ag.hpp`, the CMake auto-generated
 header file that will be updated with the required definition. Next, re-build
 your example.
 

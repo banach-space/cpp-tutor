@@ -10,9 +10,12 @@
 //
 // License: MIT
 //========================================================================
-#include <vector>
-
 #include "memory_block.hpp"
+
+#include "cppt_ag.hpp"
+#include "cppt_tools.hpp"
+
+#include <vector>
 
 int main() {
   // Create a vector object and add a few elements to it.

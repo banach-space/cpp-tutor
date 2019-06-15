@@ -57,7 +57,6 @@ set(cppTutorUT_SOURCES
 
 set(strings_1_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp_tutor_helper.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_1_main.cpp)
 
 set(strings_2_SOURCES
@@ -133,7 +132,10 @@ set(init_list_gotchas_SOURCES
 # EXECUTABLES AND THE INCLUDE DIRECTORIES FOR TARGETS
 # ===================================================
 foreach( executable ${cppTutor_EXECUTABLES} )
-    add_executable( ${executable} ${${executable}_SOURCES} )
+    add_executable( ${executable} 
+      ${${executable}_SOURCES} 
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/cppt_tools.cpp
+      )
 
     target_include_directories(${executable} PRIVATE SYSTEM
       ${PROJECT_BINARY_DIR}/include/
@@ -168,6 +170,6 @@ option(DANGLING_REF_OR_PTR "Enable code that leads to dandling refs/ptrs" OFF)
 option(RUNTIME_ERROR "Enable code that leads to run-time errors (e.g. UB)." OFF)
 
 configure_file(
-  ${PROJECT_SOURCE_DIR}/include/cpp_tutor.h.in
-  ${PROJECT_BINARY_DIR}/include/cpp_tutor.h
+  ${PROJECT_SOURCE_DIR}/include/cppt_ag.hpp.in
+  ${PROJECT_BINARY_DIR}/include/cppt_ag.hpp
   )

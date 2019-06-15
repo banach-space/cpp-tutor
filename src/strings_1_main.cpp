@@ -6,18 +6,16 @@
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Code samples to help understand the difference between:
-//      - char* and char[] (based on the result of sizeof)
-//      - C-strings, std::string and std::string_view (based on the result of
-//        sizeof)
-//      - various ways of reversing a string (based on the representation)
-//    C++17 specific code was commented out with macros. It's best to study
-//    strings_reverse.cpp alongside this file.
+//    Content:
+//      - char[] vs char* vs std::string vs std::string_view
+//      - various ways of reversing strings, depending on representation
+//
+//    It's best to study strings_reverse.cpp alongside this file.
 //
 // License: MIT
 //========================================================================
-#include "cpp_tutor.h"
-#include "cpp_tutor_helper.h"
+#include <cppt_ag.hpp>
+#include <cppt_tools.hpp>
 
 #include <algorithm>
 #include <iostream>
@@ -33,8 +31,9 @@ int main(int argc, const char** argv) {
 
   // 1. DEFINE THE STRINGS
   char hello_c[] = "Hello World!";
-  // String literal stored on read-only memory. Although const is not required,
-  // it's read-only, hence trying to modify it triggers UB.
+  // Strictly speaking, `const` is not required here. However, since string
+  // literals are stored in read-only memory, any attempt to modify it will
+  // trigger UB. Hence `const char*` is what makes most sense here.
   const char* hello_c_c = "Hello World!";
   std::string hello_cpp(hello_c);
 #if __cplusplus >= 201703L

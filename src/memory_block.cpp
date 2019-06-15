@@ -12,6 +12,9 @@
 //========================================================================
 #include <memory_block.hpp>
 
+#include <cppt_ag.hpp>
+#include <cppt_tools.hpp>
+
 MemoryBlock::MemoryBlock(size_t length)
     : m_length(length), m_data(new int[length]) {
   std::cout << "In MemoryBlock(size_t). length = " << m_length << "."

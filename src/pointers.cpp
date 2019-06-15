@@ -21,12 +21,14 @@
 //
 // License: MIT
 //========================================================================
+#include "cppt_ag.hpp"
+#include "cppt_tools.hpp"
+
+#include <algorithm>
 #include <algorithm>
 #include <iostream>
 #include <memory>
 #include <string>
-
-#include "cpp_tutor.h"
 
 // Plain Old Data Structure
 struct POD {

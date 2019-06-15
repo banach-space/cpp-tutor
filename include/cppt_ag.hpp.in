@@ -1,16 +1,16 @@
 //========================================================================
 // FILE:
-//  cpp_tutor_helper.h
+//  cppt_ag.hpp.in
 //
 // AUTHOR:
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Helper functions - prototypes.
+//    Auto-generated defines exported from CMake.
 //
 // License: MIT
 //========================================================================
-namespace cppt{
-void header(const char* filename);
-void footer(const char* filename);
-}
+#cmakedefine MEMORY_LEAK
+#cmakedefine COMPILATION_ERROR
+#cmakedefine RUNTIME_ERROR
+#cmakedefine DANGLING_REF_OR_PTR

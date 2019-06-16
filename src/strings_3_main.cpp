@@ -20,7 +20,7 @@
 //
 //    Key takeaway:
 //    - Because std::string_view never triggers dynamic allocation, performance
-//      wise is far superior when compared to std::string.
+//      wise it is far superior when compared to std::string
 //
 //
 // License: MIT

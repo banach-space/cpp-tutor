@@ -1,16 +1,16 @@
 //========================================================================
 // FILE:
-//  test/tests_strings_object.cpp
+//    test/tests_strings_pool.cpp
 //
 // AUTHOR:
-//  banach-space@github
+//    banach-space@github
 //
 // DESCRIPTION:
-//  Anit tests for the Strings class (defined in strings_object.cpp)
+//    Unit tests for the StringsPool class (defined in strings_pool.cpp)
 //
 // License: Apache License 2.0
 //========================================================================
-#include <strings_object.hpp>
+#include <strings_pool.hpp>
 #include <gtest/gtest.h>
 
 #include <string>
@@ -19,17 +19,17 @@
 //========================================================================
 // Tests
 //========================================================================
-TEST(StringsObject, smoke_test) {
-  Strings strs;
+TEST(StringsPoolObject, smoke_test) {
+  StringsPool strs;
 
   ASSERT_EQ(0, strs.size());
 }
 
-TEST(StringsObject, insert_elements) {
+TEST(StringsPoolObject, insert_elements) {
   std::vector<std::string> test_strings = {"Andrzej", "Warzynski", "Nikita",
                                            "Dell",    "",          "A"};
 
-  Strings strs{};
+  StringsPool strs{};
   for (auto str : test_strings) {
     strs.append(str);
   }

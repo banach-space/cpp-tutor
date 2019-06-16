@@ -162,9 +162,11 @@ The items covered in this tutorial so far (with some relevant links):
    * C-strings vs `std::string` vs `std::string_view`
    * the underlying data-representation
    * SSO ([Short String Optimisation](https://akrzemi1.wordpress.com/2014/04/14/common-optimizations/))
-   * benchmarking `std::string` vs `std::string_view`
+   * `std::string` vs `std::string_view`: performance comparison
    * source files:
-     * `string.cpp`, `strings_1_main.cpp`, `strings_2_main.cpp` and `strings_3_main.cpp`
+     * `strings_1_main.cpp` and `strings_reverse.cpp`
+     * `strings_2_main.cpp`
+     * `strings_3_main.cpp`
 2. [Dynamic memory allocation](https://en.wikipedia.org/wiki/C_dynamic_memory_allocation)
    * TODO: `malloc\calloc\realloc\free`
    * all forms of `new` and `delete` (for plain datatypes and classes)

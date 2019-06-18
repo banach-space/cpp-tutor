@@ -28,6 +28,10 @@ The code samples presented here will be helpful if you're switching to C++ from 
 different object oriented language, are preparing for an interview, or, like
 myself, are mentoring junior C++ developers.
 
+tl;dr
+------
+You study by reading the source code, building and running the examples.
+
 Disclaimer
 ----------
 The examples presented here are meant to highlight (and sometimes exploit) the
@@ -58,16 +62,16 @@ logs (links at the top of the page) for reference setups.
 
 Usage
 -----
-The [items](#items) discussed here are independent and you can study them in any
-order that works for you. Once you choose an item that's of interest to you, go
-through the links and code samples available here. Next,
+The [items](#items) discussed here are independent and you can be studied in
+any order that works for you. Once you choose an item that's of interest to
+you, go through the links and code samples available below. Next,
 [build](#build-instructions) and run it.  Most binary files print to `stdout`.
-Make sure that you understand where the output comes from, what it means that
+Make sure that you understand where the output comes from, what it means
 and that it matches the comments in the code.
 
 Some examples implement undefined behaviour, contain compiler errors or code
 that leads to memory leaks. Such _broken_ or _problematic_ parts of the code
-are guarded off with two preprocessor symbolic constants:
+are guarded off with preprocessor symbolic constants:
   * `COMPILATION_ERROR`
   * `MEMORY_LEAK`
   * `DANGLING_REF_OR_PTR`
@@ -76,20 +80,33 @@ are guarded off with two preprocessor symbolic constants:
 Be default all symbolic constants are undefined and hence there are neither
 compilation errors nor memory leaks. Play around by defining them (one at a
 time), recompiling and re-running the examples. Make sure that the generated
-output (or compiler errors) make sense. Comments in the corresponding source
+output (or compiler errors) makes sense. Comments in the corresponding source
 files might be instrumental in understanding those.
 
-You can (and should) use [Valgrind](http://valgrind.org/) to get a better
-grasp of memory leaks implemented in some of the examples, e.g.:
+Remember to re-build and re-run the examples  _before_ and _after_
+defining `MEMORY_LEAK`/`DANGLING_REF_OR_PTR`/`RUNTIME_ERROR` (defining
+`COMPILATION_ERROR` will prevent the code from compiling, so it's not really
+relevant here).
+
+### Memory leaks
+If you're developing on Linux, you can use [Valgrind](http://valgrind.org/) to
+get a better grasp of memory leaks implemented in some of the examples, e.g.:
 ```bash
 $ cd <build_dir>
 $ valgrind smart_pointers
 ```
 (`<build_dir>` is the build directory used when [building](#build-instructions)
-the project). Remember to re-build and re-run `Valgrind`  _before_ and _after_
-defining `MEMORY_LEAK`/`DANGLING_REF_OR_PTR`/`RUNTIME_ERROR` (defining
-`COMPILATION_ERROR` will prevent the code from compiling, so it's not really
-relevant here).
+the project).
+
+On other platforms, you can use
+[AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html). This has
+already been integrated for you, but currently only for
+[clang](https://clang.llvm.org/).  In order to use the address sanitizer to
+check whether there are any memory leaks, set the [build](#build-instructions)
+type to `ASAN`, and run your example like this:
+```bash
+$ ASAN_OPTIONS=detect_leaks=1 smart_pointers
+```
 
 ### Runtime errors
 The special case of runtime errors requires additional explanation. In most

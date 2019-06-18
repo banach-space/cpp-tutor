@@ -4,14 +4,14 @@ project(cpp-tutor)
 
 set(CMAKE_CXX_STANDARD 14 CACHE STRING "")
 
-# COMPILER FLAGS
-# ==============
-# Note that warnings are expected:
+# APPEND COMPILER FLAGS
+# =====================
+# Note that warnings are _expected_:
 #   * the code deliberately doesn't follow the best coding practices, but
 #     instead focuses on highlighting corner cases which indeed trigger warnings
 #   * as part of the tutorial, compiler diagnostics (and indeed warnings) are
 #     used to identify problematic code
-# For this reason we don't want to suppress or fix the warnings and we don't
+# For this reason we don't want to suppress or fix any warninga and we don't
 # use `-Werror` (or /WX for MSVC). Also, don't use `-Wall` as that would
 # enable too many checks.
 set(cpp-tutor_COMPILER_OPTIONS_CLANG -fcolor-diagnostics)
@@ -27,7 +27,7 @@ set(cppTutor_EXECUTABLES
     strings_3
     pointers
     smart_pointers
-    strings_object
+    strings_pool
     deep_vs_shallow
     memory_block
     rvalue_vs_lvalue
@@ -49,10 +49,10 @@ set(cppTutor_EXECUTABLES
 
 set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/cpp_tutor_ut_main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_object.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_pool.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
 
 set(strings_1_SOURCES
@@ -71,9 +71,9 @@ set(pointers_SOURCES
 set(smart_pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_pointers_main.cpp)
 
-set(strings_object_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object_main.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_object.cpp)
+set(strings_pool_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool_main.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool.cpp)
 
 set(deep_vs_shallow_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/deep_vs_shallow.cpp

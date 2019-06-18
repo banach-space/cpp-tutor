@@ -162,7 +162,7 @@ The items covered in this tutorial so far (with some relevant links):
    * C-strings vs `std::string` vs `std::string_view`
    * the underlying data-representation
    * SSO ([Short String Optimisation](https://akrzemi1.wordpress.com/2014/04/14/common-optimizations/))
-   * `std::string` vs `std::string_view`: performance comparison
+   * `std::string` vs `std::string_view` (performance comparison)
    * source files:
      * `strings_1_main.cpp` and `strings_reverse.cpp`
      * `strings_2_main.cpp`

@@ -1,6 +1,6 @@
 //========================================================================
 // FILE:
-//  pointers_1.cpp
+//  pointers_main.cpp
 //
 // AUTHOR:
 //    banach-space@github

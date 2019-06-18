@@ -7,12 +7,14 @@
 //
 // DESCRIPTION:
 //    Content:
-//      - A custom memory pool using placement new: StringsPool
+//      - How to use StringPool - a custom memory pool implemented with
+//        placement new
 //
 //    Experiment by:
-//      * running the execuatable with an arbitrary number of (relatively)
-//      short arguments
-//      * (un-)defining MEMORY_LEAK, re-building and re-running
+//      - running string_pool with an arbitrary number of (relatively)
+//        short arguments:
+//          $ ./string_pool abcd efg hijk
+//      - (un-)defining MEMORY_LEAK, re-building and re-running
 //
 //    It's best to study strings_pool.cpp alongside this file.
 //
@@ -53,11 +55,16 @@ StringsPool *get_heap_object(char *argv[], size_t argc) {
 int main(int argc, char *argv[]) {
   cppt::header(argv[0]);
 
+  // Stack object
   create_stack_object(argv, argc);
 
+  // Heap object
   StringsPool *sp = get_heap_object(argv, argc);
   delete sp;
 
+  // Heap object allocated with placement new (this is seperate from placement
+  // new used internally by StringsPool). Note that this time the destructor
+  // hast to be called explicitely.
   char buffer[sizeof(StringsPool)];
   sp = new (buffer) StringsPool{argv, static_cast<size_t>(argc)};
   sp->~StringsPool();

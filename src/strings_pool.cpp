@@ -34,6 +34,7 @@ StringsPool::~StringsPool() {
 #ifndef MEMORY_LEAK
   operator delete(memory_);
 #else
+  // memory_ may look like an array, but it is _not_an_array_!
   delete[] memory_;
 #endif
 }

@@ -101,11 +101,11 @@ the project).
 On other platforms, you can use
 [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html). This has
 already been integrated for you, but currently only for
-[clang](https://clang.llvm.org/).  In order to use the address sanitizer to
-check whether there are any memory leaks, set the [build](#build-instructions)
-type to `ASAN`, and run your example like this:
+[clang](https://clang.llvm.org/) and [gcc](https://gcc.gnu.org/).  In order to
+use the address sanitizer to check whether there are any memory leaks, set the
+[build type](#build-types) to `ASAN`, and run your example like this:
 ```bash
-$ ASAN_OPTIONS=detect_leaks=1 smart_pointers
+$ ASAN_OPTIONS=detect_leaks=1 strings_pool
 ```
 
 ### Runtime errors
@@ -139,6 +139,12 @@ This will generate all the targets implemented for this project. If you want to
 ```bash
 $ make <example_name>
 ```
+
+### Build types
+Set the `CMAKE_BUILD_TYPE` variable to:
+  * `Release` to generate optimised code
+  * `ASAN` to generate build unoptimised code, with plenty of good debug info and
+    configured to be run with address sanitzer
 
 ### Switching between C++ standards
 The default C++ standard for the whole project is set to C++14. In order to
@@ -192,9 +198,8 @@ The items covered in this tutorial so far (with some relevant links):
    * deep vs shallow copy
    * a basic memory manager implemented in terms of `placement new`
    * source files:
-     * `pointers.cpp`, `strings_object.cpp`, `strings_object.hpp`,
-       `strings_object_main.cpp`, `tests_strings_object.cpp`,
-       `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
+     * `pointers_main.cpp`, `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
+     * `strings_pool_main.cpp`, `strings_pool.{cpp|hpp}`, `tests_strings_pool.cpp`,
 3. [C++ Unit testing](https://github.com/google/googletest)
    * GTest and test fixtures
    * embedding GTest tests into the build system

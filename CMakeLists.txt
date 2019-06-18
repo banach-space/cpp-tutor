@@ -82,7 +82,7 @@ set(strings_3_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_3_main.cpp)
 
 set(pointers_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers_main.cpp)
 
 set(smart_pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_pointers_main.cpp)

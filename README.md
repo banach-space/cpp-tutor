@@ -5,14 +5,20 @@ cpp-tutor
 
 Code examples for tutoring modern C++.
 
+### tl;dr
+Study by reading the source files, building the executable and running them to
+see the output.
+
+Summary
+-------
 The intent of this tutorial is to give a quick overview of some of the most
 important and interesting features of C++, and to do so in a form of complete
 and self-contained examples. It focuses on modern C++ (C++11/C++14/C++17), but
 there are also some pre C++11 and C-specific examples for comparison. It's by
 no means complete - quite the contrary. It aim is to be:
   * **Concise**: the examples are short, yet complete - to the point. There's a
-    source file implementing a `main` function for each item and you can study it
-    in complete isolation from other items.
+    source file implementing the `main` function for each [items](#items) and
+    you can study it in complete isolation from other items.
   * **Selective**: the examples emphasise features and corner cases most likely
     encountered when _just_ starting with modern C++. They focus on key points
     rather then presenting the complete picture. Less is more.
@@ -24,13 +30,9 @@ It is assumed that you already:
   * know some basic C++
   * are familiar with object-oriented programming
 
-The code samples presented here will be helpful if you're switching to C++ from a
-different object oriented language, are preparing for an interview, or, like
-myself, are mentoring junior C++ developers.
-
-tl;dr
-------
-You study by reading the source code, building and running the examples.
+These code samples will be helpful if you're switching to C++ from a different
+object oriented language, are preparing for an interview, or, like myself, are
+mentoring junior C++ developers.
 
 Disclaimer
 ----------
@@ -50,24 +52,24 @@ Status
 Platform Support
 ----------------
 The only requirement for **cpp-tutor** is a C++17 compliant compiler and
-`CMake-3.4.3` or newer. It is supported on Linux, Mac OS X and Windows and is
+`CMake-3.4.3` or newer. It is supported on Linux, Mac OS X and Windows, and is
 regularly tested against the following configurations (extracted from the CI
 files: `.travis.yml` and `appveyor.yml`):
   * Linux Ubuntu 16.04 (GCC-7 and LLVM-7)
   * Windows (Visual Studio 2015)
   * Mac OS X 10.13 (Apple LLVM 10)
 
-Locally I used GCC-8.2.1 and LLVM-7 for development. Please refer to the CI
-logs (links at the top of the page) for reference setups.
+Please refer to the CI logs (links at the top of the page) for reference
+setups.
 
 Usage
 -----
-The [items](#items) discussed here are independent and you can be studied in
-any order that works for you. Once you choose an item that's of interest to
-you, go through the links and code samples available below. Next,
-[build](#build-instructions) and run it.  Most binary files print to `stdout`.
-Make sure that you understand where the output comes from, what it means
-and that it matches the comments in the code.
+The [items](#items) covered in this tutorial are independent and you can be
+studied in any order that works for you. Once you choose an item that's of
+interest to you, go through the links and code samples available below. Next,
+[build](#build-instructions) and run it.  Most executables print to `stdout`.
+Make sure that you understand where the output comes from, what it means and
+that it matches the comments in the code.
 
 Some examples implement undefined behaviour, contain compiler errors or code
 that leads to memory leaks. Such _broken_ or _problematic_ parts of the code
@@ -102,8 +104,8 @@ On other platforms, you can use
 [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html). This has
 already been integrated for you, but currently only for
 [clang](https://clang.llvm.org/) and [gcc](https://gcc.gnu.org/).  In order to
-use the address sanitizer to check whether there are any memory leaks, set the
-[build type](#build-types) to `ASAN`, and run your example like this:
+use the address sanitizer, set the [build type](#build-types) to `ASAN`, and
+run your example like this:
 ```bash
 $ ASAN_OPTIONS=detect_leaks=1 strings_pool
 ```
@@ -112,9 +114,9 @@ $ ASAN_OPTIONS=detect_leaks=1 strings_pool
 The special case of runtime errors requires additional explanation. In most
 cases the code guarded with `RUNTIME_ERRORS` exhibits undefined behaviour, and
 as a result anything can happen. Although often the actual behaviour can be
-predicted with a good amount of accuracy (because the compilers, runtimes and
-operating systems don't change that much), do bare in mind that the output will
-depend on the system that you use.
+predicted with a good amount of accuracy (because compilers, runtimes and
+operating systems are relatively stable), do bare in mind that the output
+will depend on the system that you use.
 
 Build Instructions
 ------------------
@@ -175,7 +177,7 @@ in which `PREPROCESSOR_SYMBOL` is one of:
 
 This will update `<build_dir>/include/cppt_ag.hpp`, the CMake auto-generated
 header file that will be updated with the required definition. Next, re-build
-your example.
+and re-run your example.
 
 Items
 -----

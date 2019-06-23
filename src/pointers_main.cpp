@@ -1,28 +1,28 @@
-//========================================================================
+//==============================================================================
 // FILE:
-//  pointers_main.cpp
+//    pointers_main.cpp
 //
 // AUTHOR:
 //    banach-space@github
 //
 // DESCRIPTION:
-//    Examples showing how to:
-//      * allocate and deallocate dynamic memory for various data structures
-//      * correctly match various variants of `new` and `delete`
-//    Note that if incorrect version of "delete" is used (or no "delete" at
-//    all), then there's a memory leak.
+//    Content:
+//      - allocating and deallocating dynamic memory for various data structures
+//      - matching various variants of `new` and `delete`
+//      - arrays decaying to pointers in function calls
 //
-//    Also, foo was implemented to show how arrays decay into pointers when
-//    used as function arguments (evidenced by the size of the corresponding
-//    data structure before and after entering the function).
+//    Key takeaway:
+//      - Every allocation needs to be followed by a deallocation 
+//      - Lack of deallocation leads to memory leaks
+//      - Mismatch in new and delete leads to memory leaks
 //
-//    The version guarded with MEMORY_LEAK exhibits memory leaks. Make sure you
-//    understand why!
+//    Experiment by:
+//      - (un-)defining MEMORY_LEAK, re-building and re-running
 //
 // License: MIT
-//========================================================================
-#include "cppt_ag.hpp"
-#include "cppt_tools.hpp"
+//==============================================================================
+#include <cppt_ag.hpp>
+#include <cppt_tools.hpp>
 
 #include <algorithm>
 #include <algorithm>
@@ -30,47 +30,63 @@
 #include <memory>
 #include <string>
 
-// Plain Old Data Structure
+//==============================================================================
+// Data types
+//==============================================================================
 struct POD {
   int iVal;
   double dVal;
 };
 
-// What do you think this function will return?
+// What size do you think this function will report?
 void foo(std::string input_array[5]) {
-  std::cout << "Size of an array inside a function: " << sizeof input_array
+  std::cout << "Size of the input array inside foo: " << sizeof input_array
             << std::endl;
 }
 
-// Dummy class for demonstration purposes
+// Dummy class
 class Z {
   int a = 10;
 };
 
-int main() {
+//==============================================================================
+// main
+//==============================================================================
+int main(int argc, char *argv[]) {
+  cppt::header(argv[0]);
+
+  //-------------------------------------------------------------------------
   // 1. BASIC "NEW"
+  //-------------------------------------------------------------------------
   int *ip = new int;
   delete ip;
 
   auto *str = new std::string;
   delete str;
 
-  // 2. "NEW" for arrays (_without_ intialisation)
+  //-------------------------------------------------------------------------
+  // 2. "NEW" FOR ARRAYS (_WITHOUT_ INTIALISATION)
+  //-------------------------------------------------------------------------
   int *intarr = new int[20];
   delete[] intarr;
 
   auto *stringarr = new std::string[10];
   delete[] stringarr;
 
-  // 3. "NEW" for arrays (_with_ intialisation)
+  //-------------------------------------------------------------------------
+  // 3. "NEW" FOR ARRAYS (_WITH_ INTIALISATION)
+  //-------------------------------------------------------------------------
   // A pointer to 5 0-intialised PODs
   POD *pp = new POD[5]();
   delete[] pp;
+
   // A pointer to 9 0-intialised doubles
   auto *pd = new double[9]();
   delete[] pd;
 
-  // 4. Allocating a dynamic array of pointers
+  //-------------------------------------------------------------------------
+  // 4. ALLOCATING A DYNAMIC ARRAY OF POINTERs
+  //-------------------------------------------------------------------------
   auto **sp = new std::string *[5];
   for (size_t idx = 0; idx != 5; ++idx) {
     sp[idx] = new std::string;
@@ -78,6 +94,7 @@ int main() {
 
   std::cout << "Size of a pointer: " << sizeof sp << std::endl;
 #ifdef MEMORY_LEAK
+  // This won't deallocate memory pointed to by pointers inside sp
   delete[] sp;
 #else
   for (size_t idx = 0; idx != 5; ++idx) {
@@ -86,21 +103,30 @@ int main() {
   delete[] sp;
 #endif
 
-  // 5. Stack-allocated array (to see the size)
+  //-------------------------------------------------------------------------
+  // 5. STACK-ALLOCATED ARRAY (size outside and inside a function)
+  //-------------------------------------------------------------------------
   std::string static_stringarr[10];
-  std::cout << "Size of an array: " << sizeof static_stringarr << std::endl;
+  std::cout << "Size of static_stringarr: " << sizeof static_stringarr << std::endl;
+
   foo(static_stringarr);
 
-  // 6. PLACEMENT "NEW"
+  //-------------------------------------------------------------------------
+  // 6. PLACEMENT NEW
+  //-------------------------------------------------------------------------
   char *memory = new char[sizeof(Z)];
   Z *a = new (memory) Z;
 #ifndef MEMORY_LEAK
+  // Placement new requires placement delete
   delete (a, memory);
 #endif
 
   char *memory2 = new char[5 * sizeof(Z)];
   Z *b = new (memory2) Z[5];
 #ifndef MEMORY_LEAK
+  // Placement new requires placement delete
   delete[](b, memory2);
 #endif
+
+  cppt::footer(argv[0]);
 }

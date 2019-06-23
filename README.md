@@ -26,13 +26,10 @@ no means complete - quite the contrary. It aim is to be:
     and readability, e.g. in some cases there's more comments than code. Also,
     see the [disclaimer](#disclaimer)
 
-It is assumed that you already:
-  * know some basic C++
-  * are familiar with object-oriented programming
-
-These code samples will be helpful if you're switching to C++ from a different
-object oriented language, are preparing for an interview, or, like myself, are
-mentoring junior C++ developers.
+It is assumed that you already know some basic C++ and are familiar with
+object-oriented programming. These code samples will be helpful if you're
+switching to C++ from a different object oriented language, are preparing for
+an interview, or, like myself, are mentoring junior C++ developers.
 
 Disclaimer
 ----------
@@ -193,14 +190,14 @@ The items covered in this tutorial so far (with some relevant links):
      * `strings_2_main.cpp`
      * `strings_3_main.cpp`
 2. [Dynamic memory allocation](https://en.wikipedia.org/wiki/C_dynamic_memory_allocation)
-   * TODO: `malloc\calloc\realloc\free`
    * all forms of `new` and `delete` (for plain datatypes and classes)
    * dynamic array of dynamic objects (a.k.a. 2-dimensional dynamical arrays)
    * memory leaks caused by mismatch in `new` and `delete`
    * deep vs shallow copy
    * a basic memory manager implemented in terms of `placement new`
    * source files:
-     * `pointers_main.cpp`, `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
+     * `pointers_main.cpp`
+     * `deep_vs_shallow.{hpp|cpp}`, `deep_vs_shallow_main.cpp`
      * `strings_pool_main.cpp`, `strings_pool.{cpp|hpp}`, `tests_strings_pool.cpp`,
 3. [C++ Unit testing](https://github.com/google/googletest)
    * GTest and test fixtures

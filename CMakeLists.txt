@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4.3 FATAL_ERROR)
 
 project(cpp-tutor)
 
-set(CMAKE_CXX_STANDARD 14 CACHE STRING "")
+set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
 
 # APPEND COMPILER FLAGS
 # =====================

@@ -1,6 +1,6 @@
-name: x86-Ubuntu
+name: Apple Silicon
 
-on:
+on: 
   push:
   pull_request:
     branches: [ main ]
@@ -10,21 +10,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: macos-latest
     strategy:
       matrix:
-        compiler:
-          - { compiler: GNU,  CC: gcc-10,   CXX: g++-10 }
-          - { compiler: LLVM, CC: clang-10, CXX: clang++-10 }
         type: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
       - name: Clone GTest
         run: git clone https://github.com/google/googletest.git
       - name: Build and run
-        env:
-          CC: ${{ matrix.compiler.CC }}
-          CXX: ${{ matrix.compiler.CXX }}
         run: |
           cd $GITHUB_WORKSPACE
           mkdir build && cd build

@@ -1,0 +1,30 @@
+name: x86-Windows
+
+# FIXME - Thi seems to only build debug!
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron:  '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        type: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clone GTest
+        run: git clone https://github.com/google/googletest.git
+      - name: Build and run
+        run: |
+          mkdir build
+          cmake  -S . -B build/ -DCMAKE_BUILD_TYPE=${{ matrix.type }} 
+          cmake --build build/
+          build\cpp-tutor.sln
+          # Seems to get stuck - fix
+          # build\Debug\cppTutorUT.exe

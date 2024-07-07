@@ -23,8 +23,8 @@ jobs:
       - name: Build and run
         run: |
           mkdir build
-          cmake  -S . -B build/ -DCMAKE_BUILD_TYPE=${{ matrix.type }} 
-          cmake --build build/
+          cmake  -S . -B build/ 
+          cmake --build build/ --config ${{ matrix.type }}
           build\cpp-tutor.sln
           # Seems to get stuck - fix
           # build\Debug\cppTutorUT.exe

@@ -16,12 +16,16 @@ jobs:
         type: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          brew update
+          brew install llvm@19
       - name: Clone GTest
         run: git clone https://github.com/google/googletest.git
       - name: Build and run
         run: |
           cd $GITHUB_WORKSPACE
           mkdir build && cd build
-          cmake  -DCMAKE_BUILD_TYPE=${{ matrix.type }}  ../
+          cmake -DCT_LLVM_INSTALL_DIR="/opt/homebrew/opt/llvm@19/" -DCMAKE_BUILD_TYPE=${{ matrix.type }}  ../
           make -j8
           ./cppTutorUT

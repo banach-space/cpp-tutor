@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         compiler:
@@ -19,6 +19,12 @@ jobs:
         type: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+          sudo apt-add-repository "deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-19 main"
+          sudo apt-get update
+          sudo apt-get install -y llvm-19 llvm-19-dev llvm-19-tools clang-19
       - name: Clone GTest
         run: git clone https://github.com/google/googletest.git
       - name: Build and run
@@ -28,6 +34,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           mkdir build && cd build
-          cmake  -DCMAKE_BUILD_TYPE=${{ matrix.type }}  ../
+          cmake -DCT_LLVM_INSTALL_DIR="/usr/lib/llvm-19/"  -DCMAKE_BUILD_TYPE=${{ matrix.type }}  ../
           make -j8
           ./cppTutorUT

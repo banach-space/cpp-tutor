@@ -146,7 +146,7 @@ Set the `CMAKE_BUILD_TYPE` variable to:
     configured to be run with address sanitzer
 
 ### Switching between C++ standards
-The default C++ standard for the whole project is set to C++14. In order to
+The default C++ standard for the whole project is set to C++17. In order to
 rebuild using `C++11` or `C++17`, use `CMAKE_CXX_STANDARD`. For example, to
 build in `C++17` mode:
 ```bash

@@ -17,6 +17,9 @@
 #include <cppt_ag.hpp>
 #include <cppt_tools.hpp>
 
+#include "llvm/Support/raw_ostream.h"
+#include <llvm/ADT/StringRef.h>
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -37,6 +40,7 @@ int main(int argc, const char** argv) {
   const char* hello_c_c = "Hello World!";
   std::string hello_cpp(hello_c);
   std::string_view hello_sv(hello_cpp);
+  llvm::StringRef hello_sr(hello_cpp);
 
   //-------------------------------------------------------------------------
   // 2. PRINT THE STRINGS
@@ -45,6 +49,11 @@ int main(int argc, const char** argv) {
   std::cout << "C-string (const char*): " << hello_c_c << std::endl;
   std::cout << "C++ string: " << hello_cpp << std::endl;
   std::cout << "C++ string_view: " << hello_sv << std::endl;
+  // As std::cout _does not_ understand llvm::StringRef, you need to grab the
+  // underlying string for printing.
+  std::cout << "C++ StringRef (via std::cout): " << hello_sr.str() << std::endl;
+  // However, llvm::outs() _does_ understand llvm:StringRef.
+  llvm::outs() << "C++ StringRef (via llvm::outs): " << hello_sr << "\n";
   std::cout << std::endl;
 
   //-------------------------------------------------------------------------
@@ -54,6 +63,7 @@ int main(int argc, const char** argv) {
   std::cout << "Size of hello_c_c: " << sizeof(hello_c_c) << std::endl;
   std::cout << "Size of hello_cpp: " << sizeof(hello_cpp) << std::endl;
   std::cout << "Size of hello_sv: " << sizeof(hello_sv) << std::endl;
+  std::cout << "Size of hello_sr: " << sizeof(hello_sr) << std::endl;
   std::cout << std::endl;
 
   //-------------------------------------------------------------------------

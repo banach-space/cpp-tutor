@@ -235,6 +235,10 @@ target_compile_options(${executable} PRIVATE
   "$<$<CXX_COMPILER_ID:MSVC>:${cpp-tutor_COMPILER_OPTIONS_MSVC}>")
 endforeach()
 
+target_link_libraries(strings_1
+  LLVMSupport
+)
+
 
 # EXTRA SET-UP FOR UNIT TESTS
 # ===========================
@@ -258,4 +262,4 @@ option(RUNTIME_ERROR "Enable code that leads to run-time errors (e.g. UB)." OFF)
 configure_file(
   ${PROJECT_SOURCE_DIR}/include/cppt_ag.hpp.in
   ${PROJECT_BINARY_DIR}/include/cppt_ag.hpp
-  )
+)

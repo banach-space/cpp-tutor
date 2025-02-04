@@ -130,7 +130,7 @@ $ git clone https://github.com/google/googletest.git
 Next, you can build all the examples as follows:
 ```bash
 $ cd <build-dir>
-$ cmake <source_dir>
+$ cmake -DCT_LLVM_INSTALL_DIR=<llvm-install-dir> <source_dir>
 $ make
 ```
 This will generate all the targets implemented for this project. If you want to

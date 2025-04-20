@@ -7,7 +7,7 @@
 //
 // DESCRIPTION:
 //    Content:
-//      - char[] vs char* vs std::string vs std::string_view
+//      - char[] vs char* vs std::string vs std::string_view vs llvm::StringRef
 //      - various ways of reversing strings, depending on representation
 //
 //    It's best to study strings_reverse.cpp alongside this file.

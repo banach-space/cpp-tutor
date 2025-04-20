@@ -7,34 +7,34 @@
 //
 // DESCRIPTION:
 //    Content:
-//    - SSO (short string optimisation)
-//    - implications of copying strings (dynamic allocations), in particular
-//      how std::string_view is superior in this respect
+//    - SSO, i.e. Short String Optimisation.
+//    - Implications of copying strings (dynamic allocations) and how
+//    std::string_view is superior in this respect.
 //
-//    Too fully appreciate these examples, build this file with multiple
-//    compilers (e.g. GCC and clang, or different versions of those) and
-//    compare the output. The size of the internal buffer for SSO should differ
-//    each time, which should be obvious from the output.
+//    Too fully appreciate these examples, build this file with different
+//    compilers (e.g. GCC and clang) or different versions of one compiler
+//    (e.g. Clang 14 vs Clang 20) and compare the output. The size of the
+//    internal buffer for SSO should differ each time (this should be obvious
+//    from the printed output).
 //
 // 		Key takeaways:
 //		- Using string_view guarantees that there will be no dynamic
-//      memory allocations
+//      memory allocations.
 //    - Most modern implementations of STL use SSO, but the size of the internal
-//      buffer is not fixed
-//
+//      buffer is not fixed.
 //
 // License: MIT
 //==============================================================================
 #include "cppt_ag.hpp"
 #include "cppt_tools.hpp"
 
+#include "llvm/Support/raw_ostream.h"
+#include <llvm/ADT/StringRef.h>
+
 #include <algorithm>
 #include <iostream>
 #include <new>
 #include <string>
-#if __cplusplus >= 201703L
-#include <string_view>
-#endif
 
 //==============================================================================
 // Helper functions
@@ -60,9 +60,8 @@ void operator delete(void* raw_memory) noexcept {
 // Dummy functions that take strings. In neither case there should be any
 // copying involved, right?
 void getString(const std::string& str) {}
-#if __cplusplus == 201703L
 void getStringView(std::string_view sv) {}
-#endif
+void getStringRef(llvm::StringRef sv) {}
 
 //==============================================================================
 // main
@@ -93,7 +92,7 @@ int main(int argc, const char** argv) {
   std::string one_hundred_chars(100, 'D');
 
   //-------------------------------------------------------------------------
-  // 2. CREATE SUBSTRINGS + string_view
+  // 2. CREATE SUBSTRINGS + string_view + StringRef
   //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
   std::cout << "\n" << sec_num++ << ". SUBSTRINGS + STD::STRING_VIEW:\n";
@@ -102,11 +101,13 @@ int main(int argc, const char** argv) {
   std::string large_substr = large.substr(15);
   std::string very_large_substr = very_large.substr(15);
 
-#if __cplusplus >= 201703L
   std::string_view small_sv(small);
   std::string_view large_sv(large);
   std::string_view very_large_sv(very_large);
-#endif
+
+  llvm::StringRef small_sr(small);
+  llvm::StringRef large_sr(large);
+  llvm::StringRef very_large_sr(very_large);
 
   //-------------------------------------------------------------------------
   // 3. CALL getString
@@ -122,16 +123,24 @@ int main(int argc, const char** argv) {
   // 4. CALL getStringView
   //-------------------------------------------------------------------------
   // Are new and delete being invoked? When and why?
-#if __cplusplus >= 201703L
   std::cout << "\n" << sec_num++ << ". CALL getStringView:\n";
 
   getStringView(large);
   getStringView("0123456789-123456789-123456789-123456789");
   getStringView(message);
-#endif
 
   //-------------------------------------------------------------------------
-  // 5. DEALLOCATION
+  // 5. CALL getStringVRef
+  //-------------------------------------------------------------------------
+  // Are new and delete being invoked? When and why?
+  std::cout << "\n" << sec_num++ << ". CALL getStringView:\n";
+
+  getStringView(large);
+  getStringView("0123456789-123456789-123456789-123456789");
+  getStringView(message);
+
+  //-------------------------------------------------------------------------
+  // 6. DEALLOCATION
   //-------------------------------------------------------------------------
   std::cout << "\n" << sec_num << ". DEALLOCATE AUTOMATIC VARIABLES:\n";
   std::cout << "(after the closing `{`)\n";

@@ -7,10 +7,12 @@
 //
 // DESCRIPTION:
 //    Content:
-//    - performance comparison of std::string and std::string_view
+//    - Performance comparison of std::string vs std::string_view vs
+//    llvm::StringRef.
 //
-//    This experiment uses the substr method of std::string and
-//    std::string_view to investigate whether one is faster than the other.
+//    This experiment uses the substr method of std::string,
+//    std::string_view and llvm::StringRef to investigate whether one is faster
+//    than the other.
 //
 //    Make sure to build this example with different compiler optimisations
 //    (e.g. -O0 vs -O3). This can be achieved by playing with the
@@ -19,14 +21,14 @@
 //    very optimised code).
 //
 //    Key takeaway:
-//    - Because std::string_view never triggers dynamic allocation, performance
-//      wise it is far superior when compared to std::string
+//    - Because std::string_view and llvm::StringRef never trigger dynamic
+//    allocations, performance-wise these are far superior when compared to
+//    plain std::string
 //
 //
 // License: MIT
 //==============================================================================
-#include "cppt_ag.hpp"
-#include "cppt_tools.hpp"
+#include <llvm/ADT/StringRef.h>
 
 #include <chrono>
 #include <fstream>
@@ -34,10 +36,12 @@
 #include <random>
 #include <sstream>
 #include <string>
-#include <vector>
-#if __cplusplus >= 201703L
 #include <string_view>
-#endif
+#include <vector>
+
+#include "cppt_ag.hpp"
+#include "cppt_tools.hpp"
+#include "llvm/Support/raw_ostream.h"
 
 //==============================================================================
 // Config for the experiment
@@ -63,9 +67,8 @@ int main(int argc, const char** argv) {
   // text file
   std::string text = str_stream.str();
   size_t size = text.size();
-#if __cplusplus >= 201703L
   std::string_view text_sv{text.c_str(), size};
-#endif
+  llvm::StringRef text_sr(text);
 
   std::cout << "Number of characters: " << size << std::endl;
   std::cout << std::endl;
@@ -84,7 +87,7 @@ int main(int argc, const char** argv) {
   //-------------------------------------------------------------------------
   // BENCHMARKING
   //-------------------------------------------------------------------------
-  // First std::string
+  // First: std::string
   auto start = std::chrono::steady_clock::now();
   for (auto i = 0; i < k_num_accesses; ++i) {
     text.substr(random_positions[i], k_substr_len);
@@ -92,14 +95,20 @@ int main(int argc, const char** argv) {
   std::chrono::duration<double> duration_str =
       std::chrono::steady_clock::now() - start;
 
-  // Second std::string_view
+  // Second: std::string_view
   start = std::chrono::steady_clock::now();
   for (auto i = 0; i < k_num_accesses; ++i) {
-#if __cplusplus >= 201703L
     text_sv.substr(random_positions[i], k_substr_len);
-#endif
   }
   std::chrono::duration<double> duration_sv =
+      std::chrono::steady_clock::now() - start;
+
+  // Third: llvm::StringRef
+  start = std::chrono::steady_clock::now();
+  for (auto i = 0; i < k_num_accesses; ++i) {
+    text_sr.substr(random_positions[i], k_substr_len);
+  }
+  std::chrono::duration<double> duration_sr =
       std::chrono::steady_clock::now() - start;
 
   //-------------------------------------------------------------------------
@@ -110,11 +119,16 @@ int main(int argc, const char** argv) {
             << " seconds" << std::endl;
   std::cout << "std::string_view::substr: " << duration_sv.count() << " seconds"
             << std::endl;
+  std::cout << "llvm::StringRef::substr:  " << duration_sr.count() << " seconds"
+            << std::endl;
 
   std::cout << std::endl;
 
   std::cout << "std::string/std::string_view "
             << duration_str.count() / duration_sv.count() << std::endl;
+
+  std::cout << "std::string_view/llvm::StringRef "
+            << duration_sv.count() / duration_sr.count() << std::endl;
 
   cppt::footer(argv[0]);
 }

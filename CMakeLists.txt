@@ -111,6 +111,8 @@ set(cppTutor_EXECUTABLES
     strings_1
     strings_2
     strings_3
+    vector_1
+    vector_2
     pointers
     smart_pointers
     strings_pool
@@ -150,6 +152,13 @@ set(strings_2_SOURCES
 
 set(strings_3_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_3_main.cpp)
+
+set(vector_1_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_1.cpp)
+
+set(vector_2_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_2.cpp)
 
 set(pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers_main.cpp)
@@ -239,6 +248,13 @@ target_link_libraries(strings_1
   LLVMSupport
 )
 
+target_link_libraries(vector_1
+  LLVMSupport
+)
+
+target_link_libraries(vector_2
+  LLVMSupport
+)
 
 # EXTRA SET-UP FOR UNIT TESTS
 # ===========================

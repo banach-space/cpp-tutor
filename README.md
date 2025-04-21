@@ -3,7 +3,9 @@ cpp-tutor
 [![Apple Silicon](https://github.com/banach-space/cpp-tutor/actions/workflows/apple-silicon.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/apple-silicon.yml)
 [![x86-Ubuntu](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml)
 
-Code examples for tutoring modern C++.
+Code examples for tutoring modern C++ 
+
+Includes examples comparing C++ standard library and [LLVM ADT library](https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task))
 
 ### tl;dr
 Study by reading the source files, building the executable and running them to
@@ -13,9 +15,9 @@ Summary
 -------
 The intent of this tutorial is to give a quick overview of some of the most
 important and interesting features of C++, and to do so in a form of complete
-and self-contained examples. It focuses on modern C++ (C++11/C++14/C++17), but
-there are also some pre C++11 and C-specific examples for comparison. It's by
-no means complete - quite the contrary. It aim is to be:
+and self-contained examples. While it focuses on modern C++ (>= C++11), there
+are also some pre C++11 and C-specific examples for comparison. It's by no
+means complete - quite the contrary. It aim is to be:
   * **Concise**: the examples are short, yet complete - to the point. There's a
     source file implementing the `main` function for each [items](#items) and
     you can study it in complete isolation from other items.
@@ -48,13 +50,12 @@ Status
 
 Platform Support
 ----------------
-The only requirement for **cpp-tutor** is a C++17 compliant compiler and
-`CMake-3.4.3` or newer. It is supported on Linux, Mac OS X and Windows, and is
-regularly tested against the following configurations (extracted from the CI
-files: `.travis.yml` and `appveyor.yml`):
-  * Linux Ubuntu 16.04 (GCC-7 and LLVM-7)
-  * Windows (Visual Studio 2015)
-  * Mac OS X 10.13 (Apple LLVM 10)
+The only requirement for **cpp-tutor** is a C++ compiler that support C++17 and
+`CMake-3.20` or newer. It is supported on Linux, Mac OS X and Windows, and is
+regularly tested against the following configurations:
+  * Linux Ubuntu 22.04 (GCC-11.4 and LLVM-14)
+  * Windows (FIXME/TODO!)
+  * Mac OS X 14.7.5 (AppleClang 15)
 
 Please refer to the CI logs (links at the top of the page) for reference
 setups.

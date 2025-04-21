@@ -108,6 +108,8 @@ set(CMAKE_CXX_FLAGS_ASAN
 # ==============================================
 set(cppTutor_EXECUTABLES
     cppTutorUT
+    vector_1
+    vector_2
     pointers
     smart_pointers
     deep_vs_shallow
@@ -138,6 +140,13 @@ set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_pool.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
+
+set(vector_1_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_reverse.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_1.cpp)
+
+set(vector_2_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_2.cpp)
 
 set(pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers_main.cpp)
@@ -225,6 +234,13 @@ target_compile_options(${executable} PRIVATE
   "$<$<CXX_COMPILER_ID:MSVC>:${cpp-tutor_COMPILER_OPTIONS_MSVC}>")
 endforeach()
 
+target_link_libraries(vector_1
+  LLVMSupport
+)
+
+target_link_libraries(vector_2
+  LLVMSupport
+)
 
 # EXTRA SET-UP FOR UNIT TESTS
 # ===========================

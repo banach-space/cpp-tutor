@@ -131,6 +131,7 @@ set(cppTutor_EXECUTABLES
     init_types_of
     init_brace_elision
     init_list_gotchas
+    misc
   )
 
 set(cppTutorUT_SOURCES
@@ -213,6 +214,9 @@ set(init_types_of_SOURCES
 
 set(init_list_gotchas_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/init_list_gotchas_main.cpp)
+
+set(misc_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/misc_main.cpp)
 
 
 # EXECUTABLES AND THE INCLUDE DIRECTORIES FOR TARGETS

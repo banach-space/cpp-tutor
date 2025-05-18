@@ -132,6 +132,7 @@ set(cppTutor_EXECUTABLES
     init_brace_elision
     init_list_gotchas
     misc
+    copy_and_swap_idiom
   )
 
 set(cppTutorUT_SOURCES
@@ -217,6 +218,9 @@ set(init_list_gotchas_SOURCES
 
 set(misc_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/misc_main.cpp)
+
+set(copy_and_swap_idiom_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/copy_and_swap_idiom_main.cpp)
 
 
 # EXECUTABLES AND THE INCLUDE DIRECTORIES FOR TARGETS

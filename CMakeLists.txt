@@ -108,12 +108,8 @@ set(CMAKE_CXX_FLAGS_ASAN
 # ==============================================
 set(cppTutor_EXECUTABLES
     cppTutorUT
-    strings_1
-    strings_2
-    strings_3
     pointers
     smart_pointers
-    strings_pool
     deep_vs_shallow
     memory_block
     rvalue_vs_lvalue
@@ -136,32 +132,18 @@ set(cppTutor_EXECUTABLES
   )
 
 set(cppTutorUT_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_reverse.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_pool.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/cpp_tutor_ut_main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/test/tests_strings_pool.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc)
-
-set(strings_1_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_reverse.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_1_main.cpp)
-
-set(strings_2_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_2_main.cpp)
-
-set(strings_3_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_3_main.cpp)
 
 set(pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers_main.cpp)
 
 set(smart_pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_pointers_main.cpp)
-
-set(strings_pool_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool_main.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/strings_pool.cpp)
 
 set(deep_vs_shallow_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/deep_vs_shallow.cpp
@@ -243,10 +225,6 @@ target_compile_options(${executable} PRIVATE
   "$<$<CXX_COMPILER_ID:MSVC>:${cpp-tutor_COMPILER_OPTIONS_MSVC}>")
 endforeach()
 
-target_link_libraries(strings_1
-  LLVMSupport
-)
-
 
 # EXTRA SET-UP FOR UNIT TESTS
 # ===========================
@@ -271,3 +249,7 @@ configure_file(
   ${PROJECT_SOURCE_DIR}/include/cppt_ag.hpp.in
   ${PROJECT_BINARY_DIR}/include/cppt_ag.hpp
 )
+
+# TODO
+# =====================================
+add_subdirectory(src)

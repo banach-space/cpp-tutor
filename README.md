@@ -179,13 +179,13 @@ and re-run your example.
 Items
 -----
 The items covered in this tutorial so far (with some relevant links):
-1. [Strings](http://cs.stmarys.ca/~porter/csc/ref/c_cpp_strings.html) (even more
-   [strings](https://embeddedartistry.com/blog/2017/7/24/stdstring-vs-c-strings))
-   * C-strings vs `std::string` vs `std::string_view`
-   * the underlying data-representation
+1. [strings](https://embeddedartistry.com/blog/2017/7/24/stdstring-vs-c-strings)
+   * C-strings vs `std::string` vs `std::string_view` vs `llvm::StringeRef`
+     * The underlying data-representation for C++ strings.
    * SSO ([Short String Optimisation](https://akrzemi1.wordpress.com/2014/04/14/common-optimizations/))
-   * `std::string` vs `std::string_view` (performance comparison)
-   * source files:
+   * `std::string` vs `std::string_view` vs `llvm::StringRef` 
+     * Performance comparison.
+   * Source files:
      * `strings_1_main.cpp` and `strings_reverse.cpp`
      * `strings_2_main.cpp`
      * `strings_3_main.cpp`
@@ -247,3 +247,6 @@ The items covered in this tutorial so far (with some relevant links):
       * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
         `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
         `init_list_gotchas_main.cpp`
+11. Miscelanous
+  * Various items for which I am yet to identify a better place.
+  * Source files: `misc_main.cpp`.

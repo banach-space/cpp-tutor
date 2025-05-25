@@ -18,12 +18,35 @@ jobs:
         type: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
+
+      - name: Download LLVM 19
+        # AFAIK, only tar.xz distributions contains LLVMConfig.cmake (as well
+        # as many other things). This is the only tar.xz that I could find for
+        # Windows - in the future there might be a better target.
+        run: curl.exe -L -o llvm.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/clang+llvm-19.1.7-x86_64-pc-windows-msvc.tar.xz
+
+        shell: powershell
+
+      - name: Extract LLVM
+        run: |
+          7z x llvm.tar.xz -oC:\temp
+          7z x C:\temp\llvm.tar -oC:\LLVM
+        shell: powershell
+
+      - name: Add LLVM to PATH
+        run: echo "C:\LLVM\clang+llvm-19.1.7-x86_64-pc-windows-msvc\bin" | Out-File -Append $env:GITHUB_PATH
+        shell: powershell
+
+      - name: Verify LLVM version
+        run: clang --version
+
       - name: Clone GTest
         run: git clone https://github.com/google/googletest.git
       - name: Build and run
         run: |
+          tree "C:\LLVM\"
           mkdir build
-          cmake  -S . -B build/ 
+          cmake  -S . -B build/ -DCT_LLVM_INSTALL_DIR="C:/LLVM/clang+llvm-19.1.7-x86_64-pc-windows-msvc/"
           cmake --build build/ --config ${{ matrix.type }}
           build\cpp-tutor.sln
           # Seems to get stuck - fix

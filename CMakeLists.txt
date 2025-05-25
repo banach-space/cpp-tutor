@@ -109,7 +109,6 @@ set(CMAKE_CXX_FLAGS_ASAN
 set(cppTutor_EXECUTABLES
     cppTutorUT
     vector_1
-    vector_2
     pointers
     smart_pointers
     deep_vs_shallow
@@ -133,6 +132,13 @@ set(cppTutor_EXECUTABLES
     copy_and_swap_idiom
   )
 
+if (NOT WIN32)
+  # This example leverages some lower-level/POSIX Unix logic that is not
+  # available on Windows.
+  # TODO: Make this work on Windows. If possible at all.
+  list(APPEND cppTutor_EXECUTABLES vector_2)
+endif()
+
 set(cppTutorUT_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_reverse.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_pool.cpp
@@ -145,8 +151,13 @@ set(vector_1_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/strings/strings_reverse.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_1.cpp)
 
-set(vector_2_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_2.cpp)
+if (NOT WIN32)
+  # This example leverages some lower-level/POSIX Unix logic that is not
+  # available on Windows.
+  # TODO: Make this work on Windows. If possible at all.
+  set(vector_2_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/vector_main_2.cpp)
+endif()
 
 set(pointers_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/pointers_main.cpp)
@@ -238,9 +249,14 @@ target_link_libraries(vector_1
   LLVMSupport
 )
 
-target_link_libraries(vector_2
-  LLVMSupport
-)
+if (NOT WIN32)
+  # This example leverages some lower-level/POSIX Unix logic that is not
+  # available on Windows.
+  # TODO: Make this work on Windows. If possible at all.
+  target_link_libraries(vector_2
+    LLVMSupport
+  )
+endif()
 
 # EXTRA SET-UP FOR UNIT TESTS
 # ===========================

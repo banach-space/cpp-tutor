@@ -25,7 +25,9 @@
 //
 // License: MIT
 //========================================================================
+#ifndef WIN32
 #include <dlfcn.h>
+#endif
 #include <llvm/ADT/SmallVector.h>
 #include <llvm/ADT/StringRef.h>
 

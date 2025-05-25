@@ -5,33 +5,32 @@ cpp-tutor
 
 Code examples for tutoring modern C++ 
 
-Includes examples comparing C++ standard library and [LLVM ADT library](https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task))
+Includes examples comparing **C++ standard library** and **[LLVM ADT library](https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task)**
 
 ### tl;dr
-Study by reading the source files, building the executable and running them to
-see the output.
+Study by reading, building and running the examples.
 
 Summary
 -------
-The intent of this tutorial is to give a quick overview of some of the most
-important and interesting features of C++, and to do so in a form of complete
-and self-contained examples. While it focuses on modern C++ (>= C++11), there
-are also some pre C++11 and C-specific examples for comparison. It's by no
-means complete - quite the contrary. It aim is to be:
-  * **Concise**: the examples are short, yet complete - to the point. There's a
-    source file implementing the `main` function for each [items](#items) and
-    you can study it in complete isolation from other items.
-  * **Selective**: the examples emphasise features and corner cases most likely
-    encountered when _just_ starting with modern C++. They focus on key points
-    rather then presenting the complete picture. Less is more.
-  * **Clear**: the examples sacrifice code quality in favour of code clarity
-    and readability, e.g. in some cases there's more comments than code. Also,
-    see the [disclaimer](#disclaimer)
+This tutorial provides a quick overview of the most important and interesting
+features of C++, presented through self-contained and runnable examples. It
+focuses on modern C++ (>= C++11) and the **C++ STD** and **LLVM ADT**
+libraries.
+
+For each item/theme from [items](#items) , there is at least one source file
+implementing the `main` function that you can build and run. The provided
+examples are:
+  * **Concise, yet complete**: while short, most files are runnable. This way,
+    you can study the examples by experimenting. 
+  * **Selective and opinionated**: emphasis is put on features and corner cases
+    most likely encountered when _just starting with modern C++_. Focus is put
+    on key points rather then presenting the complete picture.
+  * **Clear rather than optimal**: code quality is sacrificed in favour of code
+    clarity and readability, e.g. in some cases there's more comments than
+    code. Also, see the [disclaimer](#disclaimer)
 
 It is assumed that you already know some basic C++ and are familiar with
-object-oriented programming. These code samples will be helpful if you're
-switching to C++ from a different object oriented language, are preparing for
-an interview, or, like myself, are mentoring junior C++ developers.
+object-oriented programming.
 
 Disclaimer
 ----------
@@ -248,6 +247,9 @@ The items covered in this tutorial so far (with some relevant links):
       * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
         `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
         `init_list_gotchas_main.cpp`
-11. Miscelanous
-  * Various items for which I am yet to identify a better place.
-  * Source files: `misc_main.cpp`.
+11. [std::vector](https://en.cppreference.com/w/cpp/container/vector) vs [llvm::SmallVector](https://llvm.org/docs/ProgrammersManual.html#llvm-adt-smallvector-h)
+    * Source files:
+        * `vector_main_1.cpp`, `vector_main_2.cpp`.
+12. Miscelanous
+    * Various items for which I am yet to identify a better place.
+    * Source files: `misc_main.cpp`.

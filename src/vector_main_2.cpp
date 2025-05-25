@@ -25,21 +25,18 @@
 //
 // License: MIT
 //========================================================================
-#include <cppt_ag.hpp>
-#include <cppt_tools.hpp>
-
-#include <llvm/ADT/StringRef.h>
-#include <llvm/ADT/SmallVector.h>
-
-#include <chrono>
-#include <iostream>
-#include <vector>
-
 #include <dlfcn.h>
+#include <llvm/ADT/SmallVector.h>
+#include <llvm/ADT/StringRef.h>
 
 #include <atomic>
+#include <chrono>
+#include <cppt_ag.hpp>
+#include <cppt_tools.hpp>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
+#include <vector>
 
 //==============================================================================
 // alloc_counter - helper hooks to count alloc-like invocations
@@ -63,23 +60,19 @@ void reset_counters() {
   free_count = 0;
 }
 
-void lock_counters() {
-  counters_locked = true;
-}
+void lock_counters() { counters_locked = true; }
 
-void unlock_counters() {
-  counters_locked = false;
-}
+void unlock_counters() { counters_locked = false; }
 
-void print_summary(std::string &&calls_of_what) {
+void print_summary(std::string&& calls_of_what) {
   static size_t sub_sec_num = 0;
 
-  std::cout << "  " << sub_sec_num++ << ". Count of alloc calls (" << calls_of_what
-            << "):" << std::endl;
-  std::cout << "   "  << "malloc  : " << malloc_count.load() << std::endl;
-  std::cout << "   "  << "calloc  : " <<  calloc_count.load() << std::endl;
-  std::cout << "   "  << "realloc : " <<  realloc_count.load() << std::endl;
-  std::cout << "   "  << "free    : " <<  free_count.load() << std::endl;
+  std::cout << "  " << sub_sec_num++ << ". Count of alloc calls ("
+            << calls_of_what << "):" << std::endl;
+  std::cout << "   " << "malloc  : " << malloc_count.load() << std::endl;
+  std::cout << "   " << "calloc  : " << calloc_count.load() << std::endl;
+  std::cout << "   " << "realloc : " << realloc_count.load() << std::endl;
+  std::cout << "   " << "free    : " << free_count.load() << std::endl;
 }
 }  // namespace alloc_counter
 
@@ -94,8 +87,8 @@ void* malloc(size_t size) {
   // `malloc` function type
   using malloc_fn = void* (*)(size_t);
 
-  // Give me the next definition of `malloc` after this one in the shared library
-  // resolution chain. This should be the libc `malloc`.
+  // Give me the next definition of `malloc` after this one in the shared
+  // library resolution chain. This should be the libc `malloc`.
   static malloc_fn real_malloc = (malloc_fn)dlsym(RTLD_NEXT, "malloc");
   return real_malloc(size);
 }
@@ -106,8 +99,8 @@ void* calloc(size_t nmemb, size_t size) {
   // `calloc` function type
   using calloc_fn = void* (*)(size_t, size_t);
 
-  // Give me the next definition of `calloc` after this one in the shared library
-  // resolution chain. This should be the libc `malloc`.
+  // Give me the next definition of `calloc` after this one in the shared
+  // library resolution chain. This should be the libc `malloc`.
   static calloc_fn real_calloc = (calloc_fn)dlsym(RTLD_NEXT, "calloc");
   return real_calloc(nmemb, size);
 }
@@ -118,8 +111,8 @@ void* realloc(void* ptr, size_t size) {
   // `realloc` function type
   using realloc_fn = void* (*)(void*, size_t);
 
-  // Give me the next definition of `realloc` after this one in the shared library
-  // resolution chain. This should be the libc `malloc`.
+  // Give me the next definition of `realloc` after this one in the shared
+  // library resolution chain. This should be the libc `malloc`.
   static realloc_fn real_realloc = (realloc_fn)dlsym(RTLD_NEXT, "realloc");
   return real_realloc(ptr, size);
 }
@@ -137,10 +130,9 @@ void free(void* ptr) {
 }
 }
 
-template<class T>
+template <class T>
 void populate_vector(T vector, size_t N) {
-    for (auto j = 0; j < N; j++)
-      vector.push_back(j);
+  for (auto j = 0; j < N; j++) vector.push_back(j);
 }
 
 //========================================================================
@@ -251,10 +243,10 @@ int main(int argc, const char** argv) {
             << " seconds" << std::endl;
   std::cout << "std::vector (100):        " << duration_v_100.count()
             << " seconds" << std::endl;
-  std::cout << "llvm::SmallVector (10):   " << duration_sv_10.count() << " seconds"
-            << std::endl;
-  std::cout << "llvm::SmallVector (100):  " << duration_sv_100.count() << " seconds"
-            << std::endl;
+  std::cout << "llvm::SmallVector (10):   " << duration_sv_10.count()
+            << " seconds" << std::endl;
+  std::cout << "llvm::SmallVector (100):  " << duration_sv_100.count()
+            << " seconds" << std::endl;
 
   std::cout << std::endl;
 

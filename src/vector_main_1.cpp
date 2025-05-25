@@ -17,12 +17,11 @@
 //
 // License: MIT
 //========================================================================
+#include <llvm/ADT/SmallVector.h>
+#include <llvm/ADT/StringRef.h>
+
 #include <cppt_ag.hpp>
 #include <cppt_tools.hpp>
-
-#include <llvm/ADT/StringRef.h>
-#include <llvm/ADT/SmallVector.h>
-
 #include <iostream>
 #include <vector>
 #if __cplusplus >= 202000L
@@ -122,7 +121,8 @@ int main(int argc, const char** argv) {
   //-------------------------------------------------------------------------
   // 3. PRINT THE CAPACITIES
   //-------------------------------------------------------------------------
-  std::cout << std::endl << sec_num++ << ". PRINT VECTOR CAPACITIES:" << std::endl;
+  std::cout << std::endl
+            << sec_num++ << ". PRINT VECTOR CAPACITIES:" << std::endl;
 
   std::cout << "LLVM SmallVector\n";
   std::cout << "Capacity of sv_small: " << sv_small.capacity_in_bytes()

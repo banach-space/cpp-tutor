@@ -8,10 +8,9 @@ Code examples for tutoring modern C++ (including **C++ STL** and **[LLVM ADT](ht
 
 Summary
 -------
-This tutorial provides a quick overview of various interesting
-C++ features, presented through self-contained and runnable examples. It
-focuses on modern C++ (>= C++11) and the **C++ STL** and **LLVM ADT**
-libraries.
+This tutorial provides a quick overview of various interesting C++ features,
+presented through self-contained and runnable examples. It focuses on modern
+C++ (>= C++11) and the **C++ STL** and **LLVM ADT** libraries.
 
 Lessons/examples are split into [items](#items). There is at least one runnable
 example per item (i.e. a source file implementing `main`). The provided
@@ -20,7 +19,7 @@ examples are:
     you can study the examples by experimenting. 
   * **Selective and opinionated**: emphasis is put on features and corner cases
     most likely encountered when _just starting with modern C++_. Focus is put
-    on key points rather then presenting the complete picture.
+    on key points rather than presenting the complete picture.
   * **Clear rather than optimal**: code quality is sacrificed in favour of code
     clarity and readability, e.g. in some cases you will find more comments than
     code. Also, see the [disclaimer](#disclaimer)
@@ -139,7 +138,7 @@ $ make <example_name>
 Set the `CMAKE_BUILD_TYPE` variable to:
   * `Release` to generate optimised code
   * `ASAN` to generate build unoptimised code, with plenty of good debug info and
-    configured to be run with address sanitzer
+    configured to be run with address sanitizer
 
 ### Switching between C++ standards
 The default C++ standard for the whole project is set to C++17. In order to
@@ -236,9 +235,9 @@ The items covered in this tutorial so far (with some relevant links):
    (is [bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/))
     * init values for variables with automatic and static storage duration
     * types of initialization (direct, copy, value, list)
-    * brace elistion in list initialization
+    * brace elision in list initialization
     * initializing aggregate types
-    * various gotchas when using initilizer lists
+    * various gotchas when using initializer lists
     * source files:
       * `init_stack_vs_global_vars_main.cpp`, `init_aggregate_main.cpp`,
         `init_brace_elision_main.cpp`, `init_types_of_main.cpp`,
@@ -246,6 +245,6 @@ The items covered in this tutorial so far (with some relevant links):
 11. [std::vector](https://en.cppreference.com/w/cpp/container/vector) vs [llvm::SmallVector](https://llvm.org/docs/ProgrammersManual.html#llvm-adt-smallvector-h)
     * Source files:
         * `vector_main_1.cpp`, `vector_main_2.cpp`.
-12. Miscelanous
+12. Miscellaneous
     * Various items for which I am yet to identify a better place.
     * Source files: `misc_main.cpp`.

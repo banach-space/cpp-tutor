@@ -2,6 +2,7 @@ cpp-tutor
 =========
 [![Apple Silicon](https://github.com/banach-space/cpp-tutor/actions/workflows/apple-silicon.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/apple-silicon.yml)
 [![x86-Ubuntu](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml)
+[![x86-Windows](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-windows.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-windows.yml)
 
 Code examples for tutoring modern C++ 
 

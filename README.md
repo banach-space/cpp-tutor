@@ -50,6 +50,18 @@ regularly tested against the following configurations:
 Please refer to the CI logs (links at the top of the page) for reference
 setups.
 
+LLVM ADT
+--------
+TODO
+
+Links:
+* https://www.youtube.com/watch?v=owQlnNYek2o&ab_channel=LLVM
+* https://www.youtube.com/watch?v=vElZc6zSIXM&ab_channel=CppCon
+* https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/data_structure_llvm.pdf
+* https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task
+
+LLVM ADT in Compiler Explorer: https://gcc.godbolt.org/z/v9cThqhjr
+
 Usage
 -----
 The [items](#items) covered in this tutorial are independent and you can be
@@ -77,18 +89,6 @@ Remember to re-build and re-run the examples  _before_ and _after_
 defining `MEMORY_LEAK`/`DANGLING_REF_OR_PTR`/`RUNTIME_ERROR` (defining
 `COMPILATION_ERROR` will prevent the code from compiling, so it's not really
 relevant here).
-
-LLVM ADT
---------
-TODO
-
-Links:
-* https://www.youtube.com/watch?v=owQlnNYek2o&ab_channel=LLVM
-* https://www.youtube.com/watch?v=vElZc6zSIXM&ab_channel=CppCon
-* https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/data_structure_llvm.pdf
-* https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task
-
-LLVM ADT in Compiler Explorer: https://gcc.godbolt.org/z/v9cThqhjr
 
 ### Memory leaks
 If you're developing on Linux, you can use [Valgrind](http://valgrind.org/) to

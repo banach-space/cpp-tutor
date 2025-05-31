@@ -78,6 +78,18 @@ defining `MEMORY_LEAK`/`DANGLING_REF_OR_PTR`/`RUNTIME_ERROR` (defining
 `COMPILATION_ERROR` will prevent the code from compiling, so it's not really
 relevant here).
 
+LLVM ADT
+--------
+TODO
+
+Links:
+* https://www.youtube.com/watch?v=owQlnNYek2o&ab_channel=LLVM
+* https://www.youtube.com/watch?v=vElZc6zSIXM&ab_channel=CppCon
+* https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/data_structure_llvm.pdf
+* https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task
+
+LLVM ADT in Compiler Explorer: https://gcc.godbolt.org/z/v9cThqhjr
+
 ### Memory leaks
 If you're developing on Linux, you can use [Valgrind](http://valgrind.org/) to
 get a better grasp of memory leaks implemented in some of the examples, e.g.:
@@ -102,9 +114,10 @@ $ ASAN_OPTIONS=detect_leaks=1 strings_pool
 The special case of runtime errors requires additional explanation. In most
 cases the code guarded with `RUNTIME_ERRORS` exhibits undefined behaviour, and
 as a result anything can happen. Although often the actual behaviour can be
-predicted with a good amount of accuracy (because compilers, runtimes and
-operating systems are relatively stable), do bare in mind that the output
-will depend on the system that you use.
+predicted with a good amount of accuracy (*), do bare in mind that:
+* _The output will depend on the system that you use._
+
+(*) That is because compilers, runtimes and operating systems are relatively stable.
 
 Build Instructions
 ------------------

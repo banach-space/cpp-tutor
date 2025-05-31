@@ -31,7 +31,7 @@ Disclaimer
 ----------
 The examples presented here are meant to highlight (and sometimes exploit) the
 specifics and quirks of the language. To this end, the presented examples may
-exhibit undefined or implementation specific behaviour, or implement solutions
+exhibit **undefined** or **implementation specific** behaviour, or implement solutions
 that are against good coding practices. This is done for educational purposes
 only and always thoroughly documented.
 
@@ -40,11 +40,11 @@ traditional sense.
 
 Platform Support
 ----------------
-The only requirement for **cpp-tutor** is a C++ compiler that support C++17 and
-`CMake-3.20` or newer. It is supported on Linux, Mac OS X and Windows, and is
-regularly tested against the following configurations:
+The only requirements for **cpp-tutor** are: a C++ compiler that support C++17 and
+CMake >= 3.20. This project is regularly tested on Linux, Mac OS X and Windows against
+the following configurations:
   * Linux Ubuntu 22.04 (GCC-11.4 and LLVM-14)
-  * Windows (FIXME/TODO!)
+  * Windows (Visual Studio 17 2022)
   * Mac OS X 14.7.5 (AppleClang 15)
 
 Please refer to the CI logs (links at the top of the page) for reference

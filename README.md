@@ -38,10 +38,6 @@ only and always thoroughly documented.
 This repository is self-published and has not been peer-reviewed in the
 traditional sense.
 
-Status
-------
-**WORK-IN-PROGRESS**
-
 Platform Support
 ----------------
 The only requirement for **cpp-tutor** is a C++ compiler that support C++17 and

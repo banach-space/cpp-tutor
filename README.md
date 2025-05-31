@@ -4,22 +4,17 @@ cpp-tutor
 [![x86-Ubuntu](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-ubuntu.yml)
 [![x86-Windows](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-windows.yml/badge.svg)](https://github.com/banach-space/cpp-tutor/actions/workflows/x86-windows.yml)
 
-Code examples for tutoring modern C++ 
-
-Includes examples comparing **C++ standard library** and **[LLVM ADT library](https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task)**
-
-### tl;dr
-Study by reading, building and running the examples.
+Code examples for tutoring modern C++ (including **C++ STL** and **[LLVM ADT](https://llvm.org/docs/ProgrammersManual.html#picking-the-right-data-structure-for-a-task)** libraries)
 
 Summary
 -------
-This tutorial provides a quick overview of the most important and interesting
-features of C++, presented through self-contained and runnable examples. It
-focuses on modern C++ (>= C++11) and the **C++ STD** and **LLVM ADT**
+This tutorial provides a quick overview of various interesting
+C++ features, presented through self-contained and runnable examples. It
+focuses on modern C++ (>= C++11) and the **C++ STL** and **LLVM ADT**
 libraries.
 
-For each item/theme from [items](#items) , there is at least one source file
-implementing the `main` function that you can build and run. The provided
+Lessons/examples are split into [items](#items). There is at least one runnable
+example per item (i.e. a source file implementing `main`). The provided
 examples are:
   * **Concise, yet complete**: while short, most files are runnable. This way,
     you can study the examples by experimenting. 
@@ -27,7 +22,7 @@ examples are:
     most likely encountered when _just starting with modern C++_. Focus is put
     on key points rather then presenting the complete picture.
   * **Clear rather than optimal**: code quality is sacrificed in favour of code
-    clarity and readability, e.g. in some cases there's more comments than
+    clarity and readability, e.g. in some cases you will find more comments than
     code. Also, see the [disclaimer](#disclaimer)
 
 It is assumed that you already know some basic C++ and are familiar with

@@ -14,6 +14,7 @@
 //
 // License: MIT
 //========================================================================
+#include <cppt_ag.hpp>
 #include <iostream>
 
 //========================================================================
@@ -30,7 +31,6 @@ constexpr int gcd_cpp11(int a, int b) {
 
 // C++14 implementation - many restrictions are relaxed, e.g. loops and auto
 // are now allowed
-#if __cplusplus >= 201403L
 constexpr auto gcd_cpp14(int a, int b) {
   while (b != 0) {
     auto t = b;
@@ -39,7 +39,6 @@ constexpr auto gcd_cpp14(int a, int b) {
   }
   return a;
 }
-#endif
 
 //------------------------------------------------------------------------
 // The following functions implement the Fibonacci sequence calculation. The
@@ -63,6 +62,22 @@ struct fibonacci_tmp<1> {
 
 constexpr unsigned fibonacci_cxp(const unsigned x) {
   return x <= 1 ? x : fibonacci_cxp(x - 1) + fibonacci_cxp(x - 2);
+}
+
+//------------------------------------------------------------------------
+// Type punning through members of a union + constexpr
+//
+// UB in constexpr is not allowed and the compilation should fail, but only if
+// `f` is used in constexpr context.
+//------------------------------------------------------------------------
+union U {
+  float f;
+  int n;
+};
+
+constexpr int f() {
+  U u{1.5f};
+  return u.n;  // UB (u.f is the active member)
 }
 
 //========================================================================
@@ -132,4 +147,12 @@ int main() {
 
   std::cout << "FIBONACCI: run-time" << std::endl;
   std::cout << "  fibonacci_cxp(d): " << fib_3 << std::endl;
+
+  // 5. UB in the context of constexpr is not allowed and the compilation
+  // should fail (and it does!)
+#ifdef COMPILATION_ERROR
+  constexpr auto r = f();  // would not compile
+#endif
+  auto r1 = f();  // compiles, as not a constexpr context, but still UB
+  std::cout << r1 << std::endl;
 }

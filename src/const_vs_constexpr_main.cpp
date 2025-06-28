@@ -9,8 +9,8 @@
 //    Discusses the constexpr keyword. Note that constexpr was introduced in
 //    C++11, but only in C++14 the specification was relaxed enough to make
 //    it practical to write constexpr functions. A very good overview can be
-//    found Ansel Sermersheim here (CopperSpice videos by Barbara Geller and
-//      https://www.youtube.com/watch?v=Dpob2KsYLWs
+//    found here (CopperSpice videos by Barbara Geller and Ansel Sermersheim)
+//    *  https://www.youtube.com/watch?v=Dpob2KsYLWs
 //
 // License: MIT
 //========================================================================
@@ -108,28 +108,20 @@ int main() {
   // 3. GCD
   // Compile time calculations
   constexpr int gcd_1 = gcd_cpp11(11, 121);
-#if __cplusplus >= 201403L
   constexpr int gcd_2 = gcd_cpp14(11, 121);
-#endif
   std::cout << "GCD: compile-time" << std::endl;
-  std::cout << "  gcd_cpp11(11, 121): " << gcd_1 << std::endl;
-#if __cplusplus >= 201403L
-  std::cout << "  gcd_cpp14(11, 121): " << gcd_2 << std::endl;
-#endif
+  std::cout << "(C++11)  gcd_cpp11(11, 121): " << gcd_1 << std::endl;
+  std::cout << "(C++14)  gcd_cpp14(11, 121): " << gcd_2 << std::endl;
 
   // Runtime calculations
   int a = 11;
   int b = 121;
   int gcd_3 = gcd_cpp11(a, b);
-#if __cplusplus >= 201403L
   int gcd_4 = gcd_cpp14(a, b);
-#endif
 
   std::cout << "GCD: run-time" << std::endl;
-  std::cout << "  gcd_cpp11(a, b): " << gcd_3 << std::endl;
-#if __cplusplus >= 201403L
-  std::cout << "  gcd_cpp14(a, b): " << gcd_4 << std::endl;
-#endif
+  std::cout << "(C++11)  gcd_cpp11(a, b): " << gcd_3 << std::endl;
+  std::cout << "(C++14)  gcd_cpp14(a, b): " << gcd_4 << std::endl;
 
   // 4. FIBONACCI
   // Compile time calculations

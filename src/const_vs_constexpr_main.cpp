@@ -64,22 +64,6 @@ constexpr unsigned fibonacci_cxp(const unsigned x) {
   return x <= 1 ? x : fibonacci_cxp(x - 1) + fibonacci_cxp(x - 2);
 }
 
-//------------------------------------------------------------------------
-// Type punning through members of a union + constexpr
-//
-// UB in constexpr is not allowed and the compilation should fail, but only if
-// `f` is used in constexpr context.
-//------------------------------------------------------------------------
-union U {
-  float f;
-  int n;
-};
-
-constexpr int f() {
-  U u{1.5f};
-  return u.n;  // UB (u.f is the active member)
-}
-
 //========================================================================
 // main
 //========================================================================
@@ -139,12 +123,4 @@ int main() {
 
   std::cout << "FIBONACCI: run-time" << std::endl;
   std::cout << "  fibonacci_cxp(d): " << fib_3 << std::endl;
-
-  // 5. UB in the context of constexpr is not allowed and the compilation
-  // should fail (and it does!)
-#ifdef COMPILATION_ERROR
-  constexpr auto r = f();  // would not compile
-#endif
-  auto r1 = f();  // compiles, as not a constexpr context, but still UB
-  std::cout << r1 << std::endl;
 }

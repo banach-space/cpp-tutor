@@ -27,17 +27,19 @@
 //
 // License: MIT
 //========================================================================
+#include "cppt_tools.hpp"
+#include "cppt_ag.hpp"
+
 #include <cstdint>
 #include <iostream>
 #include <typeinfo>
 
-#include "cppt_ag.hpp"
 
 //========================================================================
 // Data structures
 //========================================================================
 //------------------------------------------------------------------------
-// A and B are related through B's constructors
+// A and B are related through B's constructors - NON-VIRTUAL
 //------------------------------------------------------------------------
 struct A {
   A() { std::cout << "     A()" << std::endl; }
@@ -49,7 +51,7 @@ struct B {
 };
 
 //------------------------------------------------------------------------
-// C is unrelated to A and B
+// C is unrelated to A and B - NON-VIRTUAL
 //------------------------------------------------------------------------
 struct C {
   C(int32_t a, int32_t b) : x(a), y(b) {
@@ -63,7 +65,8 @@ struct C {
 };
 
 //------------------------------------------------------------------------
-// E inherits from D (note that it contains data not present in D)
+// E inherits from D - VIRTUAL
+// (note that E contains data not present in D)
 //------------------------------------------------------------------------
 struct D {
   D() { std::cout << "    D()" << std::endl; }
@@ -80,31 +83,61 @@ struct E : public D {
   int32_t some_int = 123;
 };
 
+//------------------------------------------------------------------------
+// Unrelated classes - VIRTUAL
+//------------------------------------------------------------------------
+
+struct F{
+  virtual int g() {return 4;}
+};
+
+struct G{
+  virtual int h() {return 6;}
+};
+
 //========================================================================
 // main
 //========================================================================
-int main() {
-  // 1. ===> IMPLICIT CONVERSION <===
-  std::cout << "1. IMPLICIT CONVERSION:" << std::endl;
+int main(int argc, const char** argv) {
+  cppt::header(argv[0]);
+  size_t sec_num = {1};
 
-  // 1.1 Cast between different integer types
+  //-------------------------------------------------------------------------
+  // 1. ===> IMPLICIT CONVERSION <===
+  //-------------------------------------------------------------------------
+  std::cout <<  "========================================================" << std::endl;
+  std::cout <<  "===> IMPLICIT CONVERSION <===" << std::endl;
+  std::cout <<  "========================================================" << std::endl;
+  std::cout << sec_num++ << ". Cost through constructors:" << std::endl;
+
+  // Cast between different integer types
   int16_t var_a = 2000;
   int32_t var_b = var_a;
+  std::cout << "    Size and type of var_a: " << sizeof var_a << ", "
+            << typeid(var_a).name() << std::endl;
+  std::cout << "    Size and type of obj_B: " << sizeof var_b << ", "
+            << typeid(var_b).name() << std::endl;
 
-  // 1.2 Implicit conversion through a specialised constructor
+  // Implicit conversion through a specialised constructor
   A obj_A;
   B obj_B = obj_A;
 
-  std::cout << "    Size and type of obj_A: " << sizeof obj_A << " "
+  std::cout << "    Size and type of obj_A: " << sizeof obj_A << ", "
             << typeid(obj_A).name() << std::endl;
-  std::cout << "    Size and type of obj_B: " << sizeof obj_B << " "
+  std::cout << "    Size and type of obj_B: " << sizeof obj_B << ", "
             << typeid(obj_B).name() << std::endl;
 
+  //-------------------------------------------------------------------------
   // 2. ===> EXPLICIT CONVERSION <===
-  std::cout << "2. EXPLICIT CONVERSION:" << std::endl;
+  //-------------------------------------------------------------------------
+  std::cout <<  "========================================================" << std::endl;
+  std::cout <<  "===> EXPLICIT CONVERSION <===" << std::endl;
+  std::cout <<  "========================================================" << std::endl;
 
-  // 2.1 C-STYLE CASTS
-  std::cout << "  2.1 C-style cast:" << std::endl;
+  //-------------------------------------------------------------------------
+  // C-STYLE CASTS
+  //-------------------------------------------------------------------------
+  std::cout << sec_num++ << ". C-style cast:" << std::endl;
 
   // 2.1.1 Cast between 16 and 32 bit integer types (good example)
   int32_t var_c = (int32_t)var_a;
@@ -119,32 +152,59 @@ int main() {
             << std::endl;
 #endif
 
+  //-------------------------------------------------------------------------
   // 2.2 DYNAMIC_CAST<T>
   // Used for conversion of polymorphic types. Does runtime check of the types.
   // Returns nullptr if the conversion is not possible (so remember to check
   // the output!)
-  std::cout << "  2.2 dynamic_cast<T>:" << std::endl;
+  //-------------------------------------------------------------------------
+  std::cout << sec_num++ << ". dynamic_cast<T> (related classes):" << std::endl;
+
+#ifdef COMPILATION_ERROR
+  // Only polymorphic classes can be dynamic_cast'ed!
+  C* p_obj_C2 = dynamic_cast<C*>(&obj_A);
+#endif
 
   D obj_D;
   E obj_E;
   D* p_obj_D;
   E* p_obj_E;
 
-  // 2.2.1 Cast derived to base (fine)
+  // 2.2.1 Cast derived to base - fine!
   p_obj_D = dynamic_cast<D*>(&obj_E);
-  if (p_obj_D == nullptr) {
-    std::cout << "    Null pointer on 1st dynamic_cast" << std::endl;
+  if (p_obj_D != nullptr) {
+    std::cout << "    dynamic_cast of a derived class to its base is fine!" << std::endl;
   }
 
-  // 2.2.2 Cast base to derived (bad)
+  // 2.2.2 Cast base to derived - bad!
   p_obj_E = dynamic_cast<E*>(&obj_D);
   if (p_obj_E == nullptr) {
-    std::cout << "    Null pointer on 2nd dynamic_cast" << std::endl;
+    std::cout << "    dynamic_cast of a base clase to one of its derived classes is bad!" << std::endl;
   }
 
+  std::cout << sec_num++ << ". dynamic_cast<T> (unrelated classes):" << std::endl;
+  F *f1 = nullptr;
+  G *g1 = dynamic_cast<G*>(f1);
+  if (!g1) {
+    std::cerr << "Nice try - trying to dynamic_cast a nullptr yields a nullptr!\n";
+  }
+  F f2;
+  G *g2 = dynamic_cast<G*>(&f2);
+  if (!g2) {
+    std::cerr << "Nice try - trying to dynamic_cast unrelated types yields a nullptr!\n";
+  }
+  try {
+    F f3;
+    G &g3 = dynamic_cast<G&>(f3);
+  } catch(std::bad_cast &) {
+    std::cerr << "Nice try - trying to dynamic_cast unrelated referneces throws a bad_cast exception!\n";
+  }
+
+  //-------------------------------------------------------------------------
   // 2.3 STATIC_CAST<T>
+  //-------------------------------------------------------------------------
   // Used for conversion of non-polymorphic types. Doesn't do runtime checks.
-  std::cout << "  2.3 static_cast<T>:" << std::endl;
+  std::cout << sec_num++ << ". static_cast<T>:" << std::endl;
 
   // 2.3.1 Cast between numeric types (good)
   double var_d = 3.14159265;
@@ -160,11 +220,13 @@ int main() {
   p_obj_E->print();
 #endif
 
+  //-------------------------------------------------------------------------
   // 2.4 REINTERPRET_CAST<T>
+  //-------------------------------------------------------------------------
   // Allows any pointer to be converted into any other pointer type. Also allows
   // any integral type to be converted into any pointer type and vice versa. No
   // runtime checks are performed.
-  std::cout << "  2.4 reinterpret_cast<T>:" << std::endl;
+  std::cout << sec_num++ << ". reinterpret_cast<T>:" << std::endl;
 
   // 2.4.1 Cast one pointer type to another pointer type - bad, bad, bad!
   A* p_obj_A = &obj_A;
@@ -180,9 +242,11 @@ int main() {
   // Bad, bad, bad!
   p_obj_A = reinterpret_cast<A*>(var_j);
 
+  //-------------------------------------------------------------------------
   // 2.5 CONST_CAST<T>
+  //-------------------------------------------------------------------------
   // Used to remove the const, volatile, and __unaligned attributes.
-  std::cout << "  2.5 const_cast<T>:" << std::endl;
+  std::cout << sec_num++ << ". const_cast<T>:" << std::endl;
 
   // 2.5.1 Modify a non-const variable through a reference-to-const (good
   // example)
@@ -200,4 +264,6 @@ int main() {
   const_cast<int32_t&>(rcl) = 4;
   std::cout << "  The value of var_l: " << var_l << std::endl;
 #endif
+
+  cppt::footer(argv[0]);
 }
